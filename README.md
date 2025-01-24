@@ -11,7 +11,7 @@ We need to defend against attacking bubbles with 2 damage types:
 * Flamethrower
   * Spreds the flame that decrese the size
   * Constant flame that in some range has an efect
-* Oil 
+* Oil thrower
   * purred that spills the oil wthat increes the flame trover damige
 
 ### Blowers
@@ -45,6 +45,7 @@ The map will need a path for enemys to move thro,
 #### Flames
 
 * Flamethrower
+* Oil thrower
 
 #### Blowers
 
@@ -55,6 +56,3 @@ The map will need a path for enemys to move thro,
 ### Maps
 
 * Green Lands
-* Dark Lands
-* Lava Lands
-* Ice Lands
