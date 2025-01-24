@@ -6,8 +6,8 @@ extends PathFollow2D
 @export var speed: float = 300.0 #px/s
 
 @export var max_health : int  = 5
-@export var base_dammage : int = 1
-@export var max_size_growth : Vector2 = Vector2(0.4,0.4)
+@export var base_damage : int = 1
+@export var max_size_growth : Vector2 = Vector2(0.3,0.3)
 
 var current_health : int
 #current image scale of bubble
@@ -36,10 +36,10 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_SPACE:
-			dammage(1)
+		if event.scancode != KEY_SPACE:
+			damage(1)
 
-func dammage(ammount : int) -> void:
+func damage(ammount : int) -> void:
 	#applies dammage and kills bubble if health == 0
 	current_health -= ammount
 	if current_health <= 0:
@@ -50,4 +50,5 @@ func dammage(ammount : int) -> void:
 	
 	#grows the size of the bubble
 	var new_size : Vector2 = current_scale.lerp(max_size_growth, (max_health - current_health)/float(max_health))
-	get_tree().create_tween().set_trans(Tween.TRANS_BOUNCE).tween_property(sprite, "scale", new_size, 0.5)
+	get_tree().create_tween().set_trans(Tween.TRANS_ELASTIC).tween_property(sprite, "scale", new_size, 0.2)
+
