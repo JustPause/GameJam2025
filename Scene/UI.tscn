@@ -4,25 +4,31 @@
 
 [node name="Ui" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_left = 576.0
+offset_top = 648.0
+offset_right = 576.0
+offset_bottom = 648.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(100, 56)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -566.0
+offset_top = -65.0
+offset_right = 566.0
+offset_bottom = -9.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(180, 56)
+custom_minimum_size = Vector2(180, 48)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -31,32 +37,32 @@ size_flags_vertical = 0
 layout_direction = 2
 layout_mode = 2
 allow_search = false
+auto_height = true
 text_overrun_behavior = 4
 item_count = 4
 max_columns = 4
-icon_mode = 0
-fixed_icon_size = Vector2i(36, 36)
+fixed_icon_size = Vector2i(48, 48)
 item_0/icon = ExtResource("1_4nr10")
 item_1/icon = ExtResource("1_4nr10")
 item_2/icon = ExtResource("1_4nr10")
 item_3/icon = ExtResource("1_4nr10")
 
 [node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(180, 56)
+custom_minimum_size = Vector2(180, 48)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
 [node name="Turrets (Fire)" type="ItemList" parent="HBoxContainer/PanelContainer2"]
-clip_contents = false
 layout_direction = 3
 layout_mode = 2
+size_flags_vertical = 8
 size_flags_stretch_ratio = 0.0
 allow_search = false
+auto_height = true
 item_count = 4
 max_columns = 4
-icon_mode = 0
-fixed_icon_size = Vector2i(36, 36)
+fixed_icon_size = Vector2i(48, 48)
 item_0/icon = ExtResource("1_4nr10")
 item_1/icon = ExtResource("1_4nr10")
 item_2/icon = ExtResource("1_4nr10")

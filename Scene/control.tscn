@@ -7,21 +7,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.15
-
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="HBoxContainer/PanelContainer"]
-layout_mode = 2
-
-[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="HBoxContainer/PanelContainer2"]
-layout_mode = 2
