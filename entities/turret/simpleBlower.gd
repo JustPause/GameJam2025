@@ -1,11 +1,11 @@
 extends Node2D
 
 
-export var shoot_cooldown: float = 1.0 # shoot cooldown in seconds
+@export var shoot_cooldown: float = 1.0 # shoot cooldown in seconds
 
-export var bullet_scene: PackedScene # Bullet scene to instance when shooting
+@export var bullet_scene: PackedScene # Bullet scene to instance when shooting
 
-export var range: float = 20.0 # range of the turret
+@export var range: float = 20.0 # range of the turret
 
 
 var shoot_timer: float = 0.0 # shooting intervals

@@ -1,7 +1,7 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 
-export var speed: float = 300.0
+@export var speed: float = 300.0
 
 # Target where the bullet moves
 var target: Node2D = null
@@ -14,7 +14,8 @@ func _process(delta: float):
 	if target and target.is_instance_valid():
 
 		var direction = (target.global_position - global_position).normalized()
-		move_and_slide(direction * speed)
+		velocity = direction * speed
+		move_and_slide()
 
 		# Check if bullet reached target
 
