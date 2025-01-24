@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ds4fu5p8inbdr"]
+[gd_scene load_steps=10 format=3 uid="uid://dkbkw76fub7ui"]
 
 [ext_resource type="Script" path="res://entities/bubble/simpleBubble.gd" id="1_1wmoo"]
 [ext_resource type="Texture2D" uid="uid://bl3ml0pw3i87p" path="res://entities/bubble/basic_bubble.png" id="2_hlvc1"]
@@ -12,6 +12,21 @@ shader_parameter/flash_value = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4wfc8"]
 radius = 29.0689
+
+[sub_resource type="Animation" id="Animation_gj0wr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BasicBubble:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_cv0mv"]
 resource_name = "dammage_flash"
@@ -27,21 +42,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 1.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_gj0wr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BasicBubble:material:shader_parameter/flash_value")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8xgsl"]

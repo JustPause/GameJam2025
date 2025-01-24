@@ -51,4 +51,3 @@ func damage(ammount : int) -> void:
 	#grows the size of the bubble
 	var new_size : Vector2 = current_scale.lerp(max_size_growth, (max_health - current_health)/float(max_health))
 	get_tree().create_tween().set_trans(Tween.TRANS_ELASTIC).tween_property(sprite, "scale", new_size, 0.2)
-

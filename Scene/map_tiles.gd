@@ -1,19 +1,24 @@
 extends TileMap
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
 	pass
-	
-func get_clicked_tile_power():
-	var clicked_cell = tile_map.local_to_map(tile_map.get_local_mouse_position())
-	var data = tile_map.get_cell_tile_data(0, clicked_cell)
+
+func _input(event):
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			var power = get_clicked_tile_power()
+			print("Clicked tile power:", power)
+
+func get_clicked_tile_power() -> bool:
+	var clicked_cell = local_to_map(get_local_mouse_position())
+
+# Get the TileData object for the clicked cell
+	var data = get_cell_tile_data(0, clicked_cell)
 	if data:
-		return data.get_custom_data("power")
+
+		print("Texture origin:", clicked_cell.x)
+		print("Texture origin:", clicked_cell.y)
+
+		return data.get_custom_data("is_it_ocupated")
 	else:
 		return 0
