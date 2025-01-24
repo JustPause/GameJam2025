@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://vg7ige6kku6i"]
+
+[ext_resource type="Script" path="res://Map.gd" id="1_7dia7"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_5enn6"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("ArrayMesh_5enn6")
+script = ExtResource("1_7dia7")
