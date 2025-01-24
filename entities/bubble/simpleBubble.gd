@@ -7,25 +7,24 @@ export var speed: float = 300.0
 var target: Node2D = null
 
 func set_target(new_target: Node2D):
-    target = new_target
+	target = new_target
 
 func _process(delta: float):
 
-    if target and target.is_instance_valid():
+	if target and target.is_instance_valid():
 
-        var direction = (target.global_position - global_position).normalized()
-        move_and_slide(direction * speed)
+		var direction = (target.global_position - global_position).normalized()
+		move_and_slide(direction * speed)
 
-        # Check if bullet reached target
+		# Check if bullet reached target
 
-        if global_position.distance_to(target.global_position) < 10:
-            print("Hit target: %s" % target.name)
+		if global_position.distance_to(target.global_position) < 10:
+			print("Hit target: %s" % target.name)
 
-            target.queue_free()  # Destroy target
+			target.queue_free()  # Destroy target
 
-            queue_free()  # Destroy bullet
+			queue_free()  # Destroy bullet
 
 
-    else:
-        queue_free()  # Destroy bullet if no target
-
+	else:
+		queue_free()  # Destroy bullet if no target

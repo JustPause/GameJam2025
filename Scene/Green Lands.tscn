@@ -1,9 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://vg7ige6kku6i"]
 
-[ext_resource type="Texture2D" uid="uid://dv7bp8snjam25" path="res://Assets/Water.png" id="1_wbjfi"]
+[ext_resource type="Texture2D" uid="uid://dv7bp8snjam25" path="res://Assets/Water.png" id="1_tpi1q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7axcs"]
-texture = ExtResource("1_wbjfi")
+texture = ExtResource("1_tpi1q")
 0:0/0 = 0
 1:0/0 = 0
 1:1/0 = 0
