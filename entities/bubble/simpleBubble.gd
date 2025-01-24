@@ -1,31 +1,15 @@
-extends CharacterBody2D
+extends PathFollow2D
 
+@export var speed: float = 300.0 #px/s
 
-@export var speed: float = 300.0
+func _ready() -> void:
+	#check is its parent is a path2d
+	if not get_parent() is Path2D:
+		queue_free()
 
-# Target where the bullet moves
-var target: Node2D = null
+func _process(delta: float) -> void:
+	progress += speed * delta
 
-func set_target(new_target: Node2D):
-	target = new_target
-
-func _process(delta: float):
-
-	if target and target.is_instance_valid():
-
-		var direction = (target.global_position - global_position).normalized()
-		velocity = direction * speed
-		move_and_slide()
-
-		# Check if bullet reached target
-
-		if global_position.distance_to(target.global_position) < 10:
-			print("Hit target: %s" % target.name)
-
-			target.queue_free()  # Destroy target
-
-			queue_free()  # Destroy bullet
-
-
-	else:
-		queue_free()  # Destroy bullet if no target
+	#when it reaches the end we wil emmit a signal to dammage the tower and do some other stuff
+	if progress_ratio == 1:
+		queue_free()
