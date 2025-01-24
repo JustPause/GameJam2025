@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://vg7ige6kku6i"]
+[gd_scene load_steps=5 format=3 uid="uid://vg7ige6kku6i"]
 
 [ext_resource type="Texture2D" uid="uid://dv7bp8snjam25" path="res://Assets/Water.png" id="1_tpi1q"]
+[ext_resource type="PackedScene" uid="uid://dkk5x4jq0j1mv" path="res://Scene/UI.tscn" id="1_vwbbn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7axcs"]
 texture = ExtResource("1_tpi1q")
@@ -15,6 +16,13 @@ texture = ExtResource("1_tpi1q")
 sources/0 = SubResource("TileSetAtlasSource_7axcs")
 
 [node name="Node2D" type="Node2D"]
+
+[node name="Ui" parent="." instance=ExtResource("1_vwbbn")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(3, 3)
