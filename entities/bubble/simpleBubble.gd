@@ -15,7 +15,7 @@ var current_scale : Vector2
 
 
 func kill() -> void:
-	queue_free()
+	call_deferred("queue_free")
 
 
 func _ready() -> void:
@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
-		if event.scancode != KEY_SPACE:
+		if event.keycode == KEY_SPACE:
 			damage(1)
 
 func damage(ammount : int) -> void:

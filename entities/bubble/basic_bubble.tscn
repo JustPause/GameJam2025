@@ -70,4 +70,4 @@ libraries = {
 "": SubResource("AnimationLibrary_8xgsl")
 }
 
-[connection signal="dammage" from="HitBox" to="." method="dammage"]
+[connection signal="damage" from="HitBox" to="." method="damage"]
