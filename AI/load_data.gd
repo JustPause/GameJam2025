@@ -1,5 +1,7 @@
 extends Node
 
+#TODO: Make this a global variable (a singleton) 
+# and make it automatically load each time user launches a game
 var games_data = {}
 
 func _ready():

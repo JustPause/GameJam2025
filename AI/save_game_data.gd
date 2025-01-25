@@ -1,4 +1,5 @@
 
+#TODO: make this global
 var current_game = {
     "game_id": "1",  # This will be dynamically generated
     "duration": 0,

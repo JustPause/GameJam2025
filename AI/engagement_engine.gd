@@ -1,6 +1,6 @@
 extends Node
 
-
+#TODO: change this variable to a global game_data, which is initially loaded
 var game_data = [
     {"loss_streak": 3, "enemies_killed": 50, "waves_completed": 5, "quit": true},
     {"loss_streak": 1, "enemies_killed": 70, "waves_completed": 7, "quit": false},
@@ -9,7 +9,7 @@ var game_data = [
 ]
 
 func _ready():
-    
+    #TODO: instead of test data obtain and pass the last game stats
     var test_data = {"loss_streak": 2, "enemies_killed": 60, "waves_completed": 7}
 
     # do not change this
