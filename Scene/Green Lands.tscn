@@ -54,12 +54,11 @@ tile_set = SubResource("TileSet_ierxv")
 tile_set = SubResource("TileSet_ierxv")
 
 [node name="Buildings" type="Node2D" parent="."]
-position = Vector2(-258.999, -114)
 scale = Vector2(3, 3)
 script = ExtResource("4_kpbxv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(578, 348)
+position = Vector2(576, 324)
 
 [node name="Ui" parent="Camera2D" instance=ExtResource("1_vwbbn")]
 offset_left = 0.0
