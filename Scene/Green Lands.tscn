@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dv7bp8snjam25" path="res://Assets/Water.png" id="1_tpi1q"]
 [ext_resource type="PackedScene" uid="uid://dkk5x4jq0j1mv" path="res://Scene/UI.tscn" id="1_vwbbn"]
 [ext_resource type="Script" path="res://Code/enemy_spawner.gd" id="2_ygyud"]
-[ext_resource type="PackedScene" uid="uid://bij4g4evagrt2" path="res://entities/turret/air_blower.tscn" id="4_vwxgj"]
+[ext_resource type="PackedScene" uid="uid://deujg343ccqv8" path="res://entities/turret/air_blower.tscn" id="4_vwxgj"]
 [ext_resource type="AudioStream" uid="uid://yk8delyoc4hj" path="res://Assets/battle soundtrack demo1.mp3" id="5_p6563"]
 [ext_resource type="AudioStream" uid="uid://dr33lg3ny5mhb" path="res://Assets/ambience.mp3" id="6_474er"]
 
@@ -27,43 +27,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 70, 2, 0, 0, 0, 0, 70, 553, 0, 0, 0, 0, 263, 552, 0, 0, 0, 0, 261, 167, 0, 0, 0, 0, 791, 170, 0, 0, 0, 0, 793, 70, 0, 0, 0, 0, 1080, 73, 0, 0, 0, 0, 1080, 553, 0, 0, 0, 0, 456, 552, 0, 0, 0, 0, 456, 360, 0, 0, 0, 0, 816, 360)
 }
 point_count = 11
-
-[sub_resource type="GDScript" id="GDScript_np2gt"]
-script/source = "extends Node2D
-
-var node : Node2D
-const GRID_SIZE = Vector2(32, 32)
-var turret=[]
-
-func _ready() -> void:
-	node=get_parent().get_node(\"Map\")
-	snap_to_grid()
-	
-
-func _process(delta: float) -> void:
-	pass
-
-func snap_to_grid():
-	position = position.snapped(GRID_SIZE)
-	print(position)
-
-func add_sprite_to_grid(turret_name, grid_position: Vector2):
-	var turret = turret_name.instance()
-
-	turret.position = grid_position * GRID_SIZE
-
-	add_child(turret)
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		#var mouse_pos = node.get_global_mouse_position()
-		var tile = node.get_clicked_tile()
-		
-		
-		
-		#add_sprite_to_grid(AirBlower,tile)
-		print(tile)
-"
 
 [node name="Node2D" type="Node2D"]
 
