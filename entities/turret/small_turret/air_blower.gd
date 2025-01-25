@@ -1,10 +1,10 @@
 extends Node2D
 
 @export var radius : float = 75
-@export var damage : int = 1
+@export var damage : float = 1
 @export var attack_speed : float = 0.4
-@export var draw_circle_outline : bool = true
 
+@export var draw_circle_outline : bool = true
 
 @onready var enemy_detector : Area2D = $EnemyDetector
 @onready var particles : CPUParticles2D = $GPUParticles2D
@@ -30,9 +30,17 @@ func shoot() -> void:
 	can_shoot = false
 	get_tree().create_timer(attack_speed).timeout.connect(func() -> void: can_shoot = true)
 
-	look_at(enemies_in_range[0].global_position)
+	#findes the node wich is the furtherest into the tree
+	var highest_ratio : float =  0
+	var target_enemy : HitBox = enemies_in_range[0]
+	for enemy in enemies_in_range:
+		if highest_ratio < enemy.get_parent().progress_ratio:
+			highest_ratio = enemy.get_parent().progress_ratio
+			target_enemy = enemy
+
+	look_at(target_enemy.global_position)
 	particles.emitting = true
-	enemies_in_range[0].emit_signal("damage", damage)
+	target_enemy.emit_signal("damage", damage, GlobalEnums.TowerAttackTypes.BUBBLES)
 
 func _ready() -> void:
 	var collision_shape := CollisionShape2D.new()
@@ -48,6 +56,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if can_shoot and enemies_in_range.size() > 0:
 		shoot()
+
 
 func _draw() -> void:
 	if draw_circle_outline:
