@@ -1,49 +1,50 @@
 
 #TODO: make this global
 var current_game = {
-    "game_id": "1",  # This will be dynamically generated
-    "duration": 0,
-    "win": false,
-    "loss_streak": 0,
-    "enemies_killed": 0,
-    "waves_completed": 0,
-    "quit": false
+	"game_id": "1",  # This will be dynamically generated
+	"duration": 0,
+	"win": false,
+	"loss_streak": 0,
+	"enemies_killed": 0,
+	"waves_completed": 0,
+	"quit": false
 }
 
 func end_game(win, duration, loss_streak, enemies_killed, waves_completed):
-    current_game.win = win
-    current_game.duration = duration
-    current_game.loss_streak = loss_streak
-    current_game.enemies_killed = enemies_killed
-    current_game.waves_completed = waves_completed
-    current_game.quit = false  # The player didn’t quit
-    save_game_data(current_game)
+	current_game.win = win
+	current_game.duration = duration
+	current_game.loss_streak = loss_streak
+	current_game.enemies_killed = enemies_killed
+	current_game.waves_completed = waves_completed
+	current_game.quit = false  # The player didn’t quit
+	save_game_data(current_game)
 
 
 func save_game_data(game_data):
-    var file = File.new()
-    var data = {}
-    
-    var filename = "user://games_history.json"
+	var path = "res://AI/games_history.json"
+	var file = FileAccess.open(path, FileAccess.READ)
 
-    if file.file_exists(filename):
-        file.open(filename, File.READ)
-        data = parse_json(file.get_as_text())
-        file.close()
-    else:
-        data = {"games": []}
+	var json_data = file.get_as_text()
+	file.close()
 
-    data["games"].append(game_data)
+	var error = OK
+	var json = JSON.new()
 
-    file.open(filename, File.WRITE)
-    file.store_string(to_json(data))
-    file.close()
+	var data = json.parse(json_data, error)
+	data["games"].append(game_data)
+
+	var file1 = FileAccess.open(path, FileAccess.WRITE)
+	file1.store_string(JSON.stringify(data))
+	file1.close()
 
 func _notification(what):
-    if what == NOTIFICATION_WM_QUIT_REQUEST:
-        record_game_quit()
+	
+	#TODO: find change true to NOTIFICATION_WM_QUIT_REQUEST analogue
+	if what == true:
+		record_game_quit()
 
 func record_game_quit():
-    current_game.quit = true
-    save_game_data(current_game)
-    get_tree().quit()
+	current_game.quit = true
+	save_game_data(current_game)
+	#get_tree().quit()
+	#TODO: change to working one
