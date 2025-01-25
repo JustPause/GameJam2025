@@ -59,28 +59,11 @@ func _ready() -> void:
 	spawn_time_interval = wave[0].pause_betwene
 
 func spawn_enemy() -> void:
-	
-	#var enemy_data: Enemys = enemys[0]
-	
-	# Instantiate the enemy scene
+
 	var enemy = basic_bubble_scene.instantiate()
-		
-	## Set additional properties (if needed) based on the `Enemys` object
-	#enemy.name = enemy_data.name_enemys
-	#enemy.health = enemy_data.health
-	#enemy.max_health = enemy_data.max_health
-	#enemy.base_damage = enemy_data.base_damage
-	#enemy.speed = enemy_data.speed
-	#
-	# Add the enemy to the scene tree
+
 	add_child(enemy)
-	#print("Spawned enemy: ", enemy_data.name_enemys)
 	can_spawn = true
-	
-	#var enemy = basic_bubble.instantiate()
-#
-	#add_child(enemy)
-	#can_spawn = true
 
 func _physics_process(_delta: float) -> void:
 	if spawn_enemies and can_spawn and (wave[0].amount_in_a_round > count):
