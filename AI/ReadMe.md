@@ -79,3 +79,10 @@ and
 continues 
 playing.
 
+## Implemented
+- Content-based filtering for increasing user engagement
+
+## In progress/Scheduled
+- Collaborative filtering for multiplayer picks
+- Reinforcement learning for game analysis to modify enemies' waves in progress, (i.e. for impossible level of difficulty)
+- Reinforcement learning for game analysis to suggest player where to put his turrets (when he starts loosing few times in a row)
