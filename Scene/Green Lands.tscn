@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=4 uid="uid://vg7ige6kku6i"]
+[gd_scene load_steps=11 format=4 uid="uid://vg7ige6kku6i"]
 
 [ext_resource type="Script" path="res://Code/Map.gd" id="1_putcg"]
 [ext_resource type="Texture2D" uid="uid://dv7bp8snjam25" path="res://Assets/Water.png" id="1_tpi1q"]
 [ext_resource type="PackedScene" uid="uid://dkk5x4jq0j1mv" path="res://Scene/UI.tscn" id="1_vwbbn"]
 [ext_resource type="Script" path="res://Code/enemy_spawner.gd" id="2_ygyud"]
 [ext_resource type="PackedScene" uid="uid://bij4g4evagrt2" path="res://entities/turret/air_blower.tscn" id="4_vwxgj"]
+[ext_resource type="AudioStream" uid="uid://yk8delyoc4hj" path="res://Assets/battle soundtrack demo1.mp3" id="5_p6563"]
+[ext_resource type="AudioStream" uid="uid://dr33lg3ny5mhb" path="res://Assets/ambience.mp3" id="6_474er"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3f5yi"]
 texture = ExtResource("1_tpi1q")
@@ -57,6 +59,11 @@ spawn_time_interval = null
 [node name="AirBlower" parent="Map" instance=ExtResource("4_vwxgj")]
 position = Vector2(105.667, 74)
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Map"]
+stream = ExtResource("5_p6563")
+autoplay = true
+parameters/looping = true
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Ui" parent="Camera2D" instance=ExtResource("1_vwbbn")]
@@ -66,3 +73,9 @@ offset_right = 0.0
 offset_bottom = 328.0
 size_flags_vertical = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_474er")
+volume_db = -12.18
+autoplay = true
+parameters/looping = true
