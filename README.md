@@ -48,6 +48,7 @@ Size is 40*40 grid for each level
 - Base bublue expasion
 - Tiles look
 - Ui idons update
+- Ui decrese the size
 - Econaomy, to buy the buildings
 
 - 10 prepare
