@@ -48,7 +48,6 @@ tile_set = SubResource("TileSet_ierxv")
 scale = Vector2(0.333333, 0.333333)
 curve = SubResource("Curve2D_5xwdy")
 script = ExtResource("2_ygyud")
-spawn_time_interval = null
 
 [node name="Buldings" type="TileMapLayer" parent="Map"]
 tile_set = SubResource("TileSet_ierxv")
