@@ -8,7 +8,7 @@ script = ExtResource("1_kp384")
 attack_speed = 0.25
 
 [node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.12, 0.12)
 texture = ExtResource("1_u561x")
 
 [node name="EnemyDetector" type="Area2D" parent="."]

@@ -16,6 +16,7 @@ func get_clicked_tile():
 	var returning = []
 	var clicked_cell
 	var data
+	
 	for tile in tile_maps:
 		clicked_cell = tile.local_to_map(tile.get_local_mouse_position())
 		data = tile.get_cell_tile_data(clicked_cell)

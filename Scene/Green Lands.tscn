@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://vg7ige6kku6i"]
+[gd_scene load_steps=9 format=4 uid="uid://vg7ige6kku6i"]
 
 [ext_resource type="Script" path="res://Code/Map.gd" id="1_putcg"]
 [ext_resource type="Texture2D" uid="uid://dv7bp8snjam25" path="res://Assets/Water.png" id="1_tpi1q"]
 [ext_resource type="PackedScene" uid="uid://dkk5x4jq0j1mv" path="res://Scene/UI.tscn" id="1_vwbbn"]
 [ext_resource type="Script" path="res://Code/enemy_spawner.gd" id="2_ygyud"]
-[ext_resource type="PackedScene" uid="uid://bij4g4evagrt2" path="res://entities/turret/air_blower.tscn" id="4_vwxgj"]
+[ext_resource type="Script" path="res://Scene/Buildings.gd" id="4_kpbxv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3f5yi"]
 texture = ExtResource("1_tpi1q")
@@ -26,47 +26,9 @@ _data = {
 }
 point_count = 11
 
-[sub_resource type="GDScript" id="GDScript_np2gt"]
-script/source = "extends Node2D
-
-var node : Node2D
-const GRID_SIZE = Vector2(32, 32)
-var turret=[]
-
-func _ready() -> void:
-	node=get_parent().get_node(\"Map\")
-	snap_to_grid()
-	
-
-func _process(delta: float) -> void:
-	pass
-
-func snap_to_grid():
-	position = position.snapped(GRID_SIZE)
-	print(position)
-
-func add_sprite_to_grid(turret_name, grid_position: Vector2):
-	var turret = turret_name.instance()
-
-	turret.position = grid_position * GRID_SIZE
-
-	add_child(turret)
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		#var mouse_pos = node.get_global_mouse_position()
-		var tile = node.get_clicked_tile()
-		
-		
-		
-		#add_sprite_to_grid(AirBlower,tile)
-		print(tile)
-"
-
 [node name="Node2D" type="Node2D"]
 
 [node name="Map" type="Node2D" parent="."]
-position = Vector2(-576, -336)
 scale = Vector2(3, 3)
 script = ExtResource("1_putcg")
 
@@ -94,16 +56,15 @@ tile_set = SubResource("TileSet_ierxv")
 [node name="Buildings" type="Node2D" parent="."]
 position = Vector2(-258.999, -114)
 scale = Vector2(3, 3)
-script = SubResource("GDScript_np2gt")
-
-[node name="AirBlower" parent="Buildings" instance=ExtResource("4_vwxgj")]
+script = ExtResource("4_kpbxv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(578, 348)
 
 [node name="Ui" parent="Camera2D" instance=ExtResource("1_vwbbn")]
 offset_left = 0.0
-offset_top = 328.0
+offset_top = 319.0
 offset_right = 0.0
-offset_bottom = 328.0
+offset_bottom = 319.0
 size_flags_vertical = 1
 metadata/_edit_use_anchors_ = true
