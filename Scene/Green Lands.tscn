@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://vg7ige6kku6i"]
+[gd_scene load_steps=9 format=4 uid="uid://vg7ige6kku6i"]
 
 [ext_resource type="Script" path="res://Code/Map.gd" id="1_putcg"]
 [ext_resource type="Texture2D" uid="uid://dv7bp8snjam25" path="res://Assets/Water.png" id="1_tpi1q"]
 [ext_resource type="PackedScene" uid="uid://dkk5x4jq0j1mv" path="res://Scene/UI.tscn" id="1_vwbbn"]
 [ext_resource type="Script" path="res://Code/enemy_spawner.gd" id="2_ygyud"]
-[ext_resource type="PackedScene" uid="uid://deujg343ccqv8" path="res://entities/turret/air_blower.tscn" id="4_vwxgj"]
+[ext_resource type="PackedScene" uid="uid://bij4g4evagrt2" path="res://entities/turret/air_blower.tscn" id="4_vwxgj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3f5yi"]
 texture = ExtResource("1_tpi1q")
@@ -26,25 +26,63 @@ _data = {
 }
 point_count = 11
 
-[sub_resource type="GDScript" id="GDScript_np2gt"]
-script/source = "extends Node2D
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lhlop"]
+shader = ExtResource("6_1r12j")
+shader_parameter/flash_color = Color(0.84441, 0, 0.169327, 1)
+shader_parameter/flash_value = 0.0
 
-var node : Node2D
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	node=get_parent().get_node(\"Map\")
+[sub_resource type="CircleShape2D" id="CircleShape2D_015fa"]
+radius = 29.0689
 
-func _process(delta: float) -> void:
-	pass
+[sub_resource type="Animation" id="Animation_gj0wr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BasicBubble:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		print(\"a\")
-		var mouse_pos = node.get_global_mouse_position()
-		var tile = node.get_clicked_tile()
-"
+[sub_resource type="Animation" id="Animation_cv0mv"]
+resource_name = "dammage_flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BasicBubble:material:shader_parameter/flash_value")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8xgsl"]
+_data = {
+"RESET": SubResource("Animation_gj0wr"),
+"dammage_flash": SubResource("Animation_cv0mv")
+}
 
 [node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Ui" parent="Camera2D" instance=ExtResource("1_vwbbn")]
+z_index = 1
+offset_left = 0.0
+offset_top = 328.0
+offset_right = 0.0
+offset_bottom = 328.0
+size_flags_vertical = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Map" type="Node2D" parent="."]
 position = Vector2(-576, -336)
@@ -56,14 +94,8 @@ tile_map_data = PackedByteArray("AAABAAAAAAAAAAEAAAABAAEAAAAAAAEAAAABAAIAAAAAAAE
 tile_set = SubResource("TileSet_ierxv")
 
 [node name="Path" type="TileMapLayer" parent="Map"]
-tile_map_data = PackedByteArray("AAABAAAAAAABAAEAAAABAAEAAAABAAEAAAABAAIAAAABAAEAAAABAAMAAAABAAEAAAABAAQAAAABAAEAAAABAAsAAAABAAEAAAABAAoAAAABAAEAAAABAAkAAAABAAEAAAABAAgAAAABAAEAAAABAAcAAAABAAEAAAABAAYAAAABAAEAAAABAAUAAAABAAEAAAACAAsAAAABAAEAAAADAAsAAAABAAEAAAAEAAsAAAABAAEAAAAFAAsAAAABAAEAAAAFAAoAAAABAAEAAAAFAAkAAAABAAEAAAAFAAgAAAABAAEAAAAFAAcAAAABAAEAAAAFAAYAAAABAAEAAAAFAAUAAAABAAEAAAAFAAQAAAABAAEAAAAFAAMAAAABAAEAAAAGAAMAAAABAAEAAAAHAAMAAAABAAEAAAAIAAMAAAABAAEAAAAJAAMAAAABAAEAAAAKAAMAAAABAAEAAAALAAMAAAABAAEAAAAMAAMAAAABAAEAAAANAAMAAAABAAEAAAAOAAMAAAABAAEAAAAPAAMAAAABAAEAAAAQAAMAAAABAAEAAAAQAAIAAAABAAEAAAAQAAEAAAABAAEAAAARAAEAAAABAAEAAAASAAEAAAABAAEAAAATAAEAAAABAAEAAAAUAAEAAAABAAEAAAAVAAEAAAABAAEAAAAWAAEAAAABAAEAAAAWAAIAAAABAAEAAAAWAAMAAAABAAEAAAAWAAQAAAABAAEAAAAWAAUAAAABAAEAAAAWAAYAAAABAAEAAAAWAAcAAAABAAEAAAAWAAgAAAABAAEAAAAWAAkAAAABAAEAAAAWAAoAAAABAAEAAAAWAAsAAAABAAEAAAAVAAsAAAABAAEAAAAUAAsAAAABAAEAAAATAAsAAAABAAEAAAASAAsAAAABAAEAAAARAAsAAAABAAEAAAAQAAsAAAABAAEAAAAPAAsAAAABAAEAAAAOAAsAAAABAAEAAAANAAsAAAABAAEAAAAMAAsAAAABAAEAAAALAAsAAAABAAEAAAAKAAsAAAABAAEAAAAJAAsAAAABAAEAAAAJAAoAAAABAAEAAAAJAAkAAAABAAEAAAAJAAgAAAABAAEAAAAJAAcAAAABAAEAAAAKAAcAAAABAAEAAAALAAcAAAABAAEAAAAMAAcAAAABAAEAAAANAAcAAAABAAEAAAAOAAcAAAABAAEAAAAPAAcAAAABAAEAAAA=")
+tile_map_data = PackedByteArray("AAABAAAAAAABAAEAAAABAAEAAAABAAEAAAABAAIAAAABAAEAAAABAAMAAAABAAEAAAABAAQAAAABAAEAAAABAAsAAAABAAEAAAABAAkAAAABAAEAAAABAAgAAAABAAEAAAABAAcAAAABAAEAAAABAAYAAAABAAEAAAABAAUAAAABAAEAAAACAAsAAAABAAEAAAADAAsAAAABAAEAAAAEAAsAAAABAAEAAAAFAAsAAAABAAEAAAAFAAoAAAABAAEAAAAFAAkAAAABAAEAAAAFAAgAAAABAAEAAAAFAAcAAAABAAEAAAAFAAYAAAABAAEAAAAFAAUAAAABAAEAAAAFAAQAAAABAAEAAAAFAAMAAAABAAEAAAAGAAMAAAABAAEAAAAHAAMAAAABAAEAAAAIAAMAAAABAAEAAAAJAAMAAAABAAEAAAAKAAMAAAABAAEAAAALAAMAAAABAAEAAAAMAAMAAAABAAEAAAANAAMAAAABAAEAAAAOAAMAAAABAAEAAAAPAAMAAAABAAEAAAAQAAMAAAABAAEAAAAQAAIAAAABAAEAAAAQAAEAAAABAAEAAAARAAEAAAABAAEAAAASAAEAAAABAAEAAAATAAEAAAABAAEAAAAUAAEAAAABAAEAAAAVAAEAAAABAAEAAAAWAAEAAAABAAEAAAAWAAIAAAABAAEAAAAWAAMAAAABAAEAAAAWAAQAAAABAAEAAAAWAAUAAAABAAEAAAAWAAYAAAABAAEAAAAWAAcAAAABAAEAAAAWAAgAAAABAAEAAAAWAAkAAAABAAEAAAAWAAoAAAABAAEAAAAWAAsAAAABAAEAAAAVAAsAAAABAAEAAAAUAAsAAAABAAEAAAATAAsAAAABAAEAAAASAAsAAAABAAEAAAARAAsAAAABAAEAAAAQAAsAAAABAAEAAAAPAAsAAAABAAEAAAAOAAsAAAABAAEAAAANAAsAAAABAAEAAAAMAAsAAAABAAEAAAALAAsAAAABAAEAAAAKAAsAAAABAAEAAAAJAAsAAAABAAEAAAAJAAoAAAABAAEAAAAJAAkAAAABAAEAAAAJAAgAAAABAAEAAAAJAAcAAAABAAEAAAAKAAcAAAABAAEAAAALAAcAAAABAAEAAAAMAAcAAAABAAEAAAANAAcAAAABAAEAAAAOAAcAAAABAAEAAAAPAAcAAAABAAEAAAABAAoAAAABAAEAAAA=")
 tile_set = SubResource("TileSet_ierxv")
-
-[node name="EnemyPath" type="Path2D" parent="Map"]
-scale = Vector2(0.333333, 0.333333)
-curve = SubResource("Curve2D_5xwdy")
-script = ExtResource("2_ygyud")
-spawn_time_interval = null
 
 [node name="Casele" type="TileMapLayer" parent="Map"]
 tile_map_data = PackedByteArray("AAAQAAgAAAAAAAAAAAARAAgAAAAAAAAAAAARAAkAAAAAAAAAAAASAAkAAAAAAAAAAAATAAkAAAAAAAAAAAATAAgAAAAAAAAAAAAUAAgAAAAAAAAAAAAUAAcAAAAAAAAAAAAUAAYAAAAAAAAAAAATAAYAAAAAAAAAAAATAAUAAAAAAAAAAAASAAUAAAAAAAAAAAARAAUAAAAAAAAAAAARAAYAAAAAAAAAAAAQAAYAAAAAAAAAAAAQAAcAAAAAAAAAAAARAAcAAAABAAIAAAASAAcAAAABAAIAAAASAAYAAAABAAIAAAASAAgAAAABAAIAAAATAAcAAAABAAIAAAA=")
@@ -72,19 +104,13 @@ tile_set = SubResource("TileSet_ierxv")
 [node name="Buldings" type="TileMapLayer" parent="Map"]
 tile_set = SubResource("TileSet_ierxv")
 
-[node name="Buildings" type="Node2D" parent="."]
-position = Vector2(-258.999, -114)
-scale = Vector2(3, 3)
-script = SubResource("GDScript_np2gt")
+[node name="EnemyPath" type="Path2D" parent="Map"]
+scale = Vector2(0.333333, 0.333333)
+curve = SubResource("Curve2D_5xwdy")
+script = ExtResource("2_ygyud")
 
-[node name="AirBlower" parent="Buildings" instance=ExtResource("4_vwxgj")]
+[node name="AirBlower" parent="Map" instance=ExtResource("4_vwxgj")]
+position = Vector2(105.667, 74)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Ui" parent="Camera2D" instance=ExtResource("1_vwbbn")]
-offset_left = 0.0
-offset_top = 328.0
-offset_right = 0.0
-offset_bottom = 328.0
-size_flags_vertical = 1
-metadata/_edit_use_anchors_ = true
+[node name="Buildings" type="Node" parent="."]
+script = ExtResource("5_1vlek")
