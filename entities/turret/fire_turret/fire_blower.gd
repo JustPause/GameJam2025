@@ -43,10 +43,10 @@ func remove_area(area : Area2D) -> void:
 		flame.visible = false
 		current_target_enemy = null
 
-		var highest_ratio : float =  0
+		var lowest_ratio : float =  1
 		for enemy in enemies_in_range:
-			if highest_ratio < enemy.get_parent().progress_ratio:
-				highest_ratio = enemy.get_parent().progress_ratio
+			if lowest_ratio > enemy.get_parent().progress_ratio:
+				lowest_ratio = enemy.get_parent().progress_ratio
 				current_target_enemy = enemy
 
 		if current_target_enemy:

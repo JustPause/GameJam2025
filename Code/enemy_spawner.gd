@@ -2,7 +2,7 @@ extends Path2D
 
 @export var spawn_time_interval : float = 0.5
 
-@export var basic_bubble : PackedScene = preload("res://entities/bubble/basic_bubble.tscn")
+@export var basic_bubble : PackedScene = preload("res://entities/bubble/ice_bubble/ice_bubble.tscn")
 
 var spawn_enemies : bool = true
 var can_spawn : bool = true
