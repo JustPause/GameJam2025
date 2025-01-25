@@ -41,27 +41,35 @@ Size is 40*40 grid for each level
 * Lava Lands
 * Ice Lands
 
--------------------------------------------
+---
 
-## Whant we need form art
+- Rounds 5
+- Death screen
+- Base bublue expasion
+- Tiles look
+- Ui idons update
+- Econaomy, to buy the buildings
 
-### Buildings
-
-* Castle (different for each level)
-
-#### Flames
-
-* Flamethrower
-
-#### Blowers
-
-* Air Blower
-* Heavy Blower
-* Mortar
-
-### Maps
-
-* Green Lands
-* Dark Lands
-* Lava Lands
-* Ice Lands
+- 10 prepare
+- 1. Round. 5 **small bubles**, evry 2 sec = 5b/10s
+- after last bubule
+- 15 sec brake
+- 2. Round. 
+- 3 **small bubles**, evry 2 sec = 6b/6 sec 
+- 4 **Big bubles**, evry 6 secons= 4Bb/24s
+- after last bubule
+- 15 sec brake
+- 3. Round. 
+- 3 **Big bubles** evry 4 secons
+- 2 **frozen bubles** evry 3 secons
+- 3 **Big bubles** and **frozen bubles** evry 2
+- after last bubule
+- 15 sec brake
+- 4. Round.
+- 2 **small bubles** evry 2 secons
+- 2 **lange bubles** evry 3 secons
+- 3 **small bubles** ecry 2 secons
+- 2 **forzen bubles** evry 3 secons
+- 1 **large bubles** evry 3 secons
+- 5 dealy 
+- 1 **Boss bubles** 

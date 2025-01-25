@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy11qnomtonvp"]
+
+[ext_resource type="Script" path="res://entities/turret/air_blower.gd" id="1_kp384"]
+[ext_resource type="Texture2D" uid="uid://cyou3562x1ffi" path="res://icon.svg" id="1_u561x"]
+
+[node name="AirBlower" type="Node2D"]
+script = ExtResource("1_kp384")
+attack_speed = 0.25
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("1_u561x")
+
+[node name="EnemyDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
