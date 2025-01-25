@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://i584myvhuq56"]
+
+[ext_resource type="Script" path="res://entities/turret/fire_turret/fire_blower.gd" id="1_3b0ub"]
+[ext_resource type="Texture2D" uid="uid://c33r70jus7jlc" path="res://entities/turret/fire_turret/fire_turret.png" id="1_c3wem"]
+[ext_resource type="Texture2D" uid="uid://dqsxc8qfiyb8" path="res://entities/turret/small_turret/bubble_small.png" id="2_1b48a"]
+[ext_resource type="Texture2D" uid="uid://bkti7bt08whpq" path="res://entities/turret/fire_turret/flames/fire_frame01.png" id="3_tb7x7"]
+[ext_resource type="Texture2D" uid="uid://ceh3uok8qgv2n" path="res://entities/turret/fire_turret/flames/fire_frame02.png" id="4_chxhm"]
+[ext_resource type="Texture2D" uid="uid://bvenb1miqo5ku" path="res://entities/turret/fire_turret/flames/fire_frame03.png" id="5_6m8ot"]
+[ext_resource type="Texture2D" uid="uid://bvkja1sgagsl0" path="res://entities/turret/fire_turret/flames/fire_frame05.png" id="6_57uur"]
+[ext_resource type="Texture2D" uid="uid://1mjg8woj8t8e" path="res://entities/turret/fire_turret/flames/fire_frame04.png" id="7_suuex"]
+[ext_resource type="Texture2D" uid="uid://d17upvkx0so50" path="res://entities/turret/fire_turret/flames/fire_frame06.png" id="8_i345h"]
+[ext_resource type="Texture2D" uid="uid://tkth3bivn4ix" path="res://entities/turret/fire_turret/flames/fire_frame07.png" id="9_g4jx6"]
+[ext_resource type="Texture2D" uid="uid://ckgiq3r6vqsg4" path="res://entities/turret/fire_turret/flames/fire_frame08.png" id="10_24j1m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6qjsd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_tb7x7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_chxhm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6m8ot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_57uur")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_suuex")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_i345h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_g4jx6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_24j1m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="FireBlower" type="Node2D"]
+script = ExtResource("1_3b0ub")
+radius = 60.0
+damage_rate = 5.0
+attack_wait_time = 0.4
+
+[node name="EnemyDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="BubbleTurretSmall" type="Sprite2D" parent="."]
+rotation = -1.57079
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("1_c3wem")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(9, 0)
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.75
+texture = ExtResource("2_1b48a")
+particle_flag_align_y = true
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 80.0
+scale_amount_min = 0.01
+scale_amount_max = 0.02
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(65, 2.0961e-13)
+rotation = 1.5708
+scale = Vector2(0.05, 0.1)
+sprite_frames = SubResource("SpriteFrames_6qjsd")
+frame_progress = 0.0547421

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgfa8xf3smb0i"
-path="res://.godot/imported/bubble_enemy.png-73264b098f41b0f4c5d590997ac2ca1d.ctex"
+uid="uid://ceh3uok8qgv2n"
+path="res://.godot/imported/fire_frame02.png-0f4e94adb482a5080b8449fdf68688be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/bubble/bubble_enemy.png"
-dest_files=["res://.godot/imported/bubble_enemy.png-73264b098f41b0f4c5d590997ac2ca1d.ctex"]
+source_file="res://entities/turret/fire_turret/flames/fire_frame02.png"
+dest_files=["res://.godot/imported/fire_frame02.png-0f4e94adb482a5080b8449fdf68688be.ctex"]
 
 [params]
 
