@@ -7,6 +7,7 @@ extends Node2D
 
 
 @onready var enemy_detector : Area2D = $EnemyDetector
+@onready var particles : CPUParticles2D = $GPUParticles2D
 
 var enemies_in_range : Array[HitBox]
 var can_shoot : bool = true :
@@ -28,7 +29,9 @@ func remove_area(area : Area2D) -> void:
 func shoot() -> void:
 	can_shoot = false
 	get_tree().create_timer(attack_speed).timeout.connect(func() -> void: can_shoot = true)
-	
+
+	look_at(enemies_in_range[0].global_position)
+	particles.emitting = true
 	enemies_in_range[0].emit_signal("damage", damage)
 
 func _ready() -> void:

@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bij4g4evagrt2"]
+
+[ext_resource type="Script" path="res://entities/turret/small_turret/air_blower.gd" id="1_kp384"]
+[ext_resource type="Texture2D" uid="uid://ctirmm5hmodnk" path="res://entities/turret/small_turret/bubble_turret_small.png" id="2_u83d1"]
+[ext_resource type="Texture2D" uid="uid://dqsxc8qfiyb8" path="res://entities/turret/small_turret/bubble_small.png" id="3_7wlr1"]
+
+[node name="AirBlower" type="Node2D"]
+script = ExtResource("1_kp384")
+attack_speed = 0.25
+
+[node name="EnemyDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="BubbleTurretSmall" type="Sprite2D" parent="."]
+rotation = -1.57079
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("2_u83d1")
+
+[node name="GPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(9, 0)
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.75
+texture = ExtResource("3_7wlr1")
+particle_flag_align_y = true
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 80.0
+scale_amount_min = 0.01
+scale_amount_max = 0.02

@@ -1,20 +1,20 @@
 [gd_scene load_steps=13 format=3 uid="uid://ds4fu5p8inbdr"]
 
 [ext_resource type="Script" path="res://entities/bubble/basic_bubble.gd" id="1_uts4i"]
-[ext_resource type="Texture2D" uid="uid://bl3ml0pw3i87p" path="res://entities/bubble/basic_bubble.png" id="2_hlvc1"]
 [ext_resource type="Shader" path="res://entities/bubble/basic_bubble.gdshader" id="2_m183l"]
 [ext_resource type="PackedScene" uid="uid://bnqdis37vcu87" path="res://components/hitbox.tscn" id="3_mcbc4"]
+[ext_resource type="Texture2D" uid="uid://bgfa8xf3smb0i" path="res://entities/bubble/bubble_enemy.png" id="4_rs8wd"]
 [ext_resource type="AudioStream" uid="uid://xx7ffwuhy72b" path="res://entities/bubble/bubblepop1.mp3" id="5_n6g1t"]
 [ext_resource type="AudioStream" uid="uid://6slpepkfga15" path="res://entities/bubble/bubblepop2.mp3" id="6_vtshn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4wfc8"]
+radius = 29.0689
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wk86i"]
 resource_local_to_scene = true
 shader = ExtResource("2_m183l")
 shader_parameter/flash_color = Color(0.84441, 0, 0.169327, 1)
 shader_parameter/flash_value = 0.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_4wfc8"]
-radius = 29.0689
 
 [sub_resource type="Animation" id="Animation_gj0wr"]
 length = 0.001
@@ -62,18 +62,19 @@ stream_1/stream = ExtResource("6_vtshn")
 rotates = false
 loop = false
 script = ExtResource("1_uts4i")
-
-[node name="BasicBubble" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_wk86i")
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("2_hlvc1")
+max_size_growth = Vector2(0.17, 0.17)
 
 [node name="HitBox" parent="." instance=ExtResource("3_mcbc4")]
-collision_layer = 2
+collision_layer = 3
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("CircleShape2D_4wfc8")
+
+[node name="BasicBubble" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_wk86i")
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("4_rs8wd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
