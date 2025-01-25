@@ -7,12 +7,12 @@ static var BASICBUBBLE : PackedScene = preload("res://entities/bubble/basic_bubb
 var spawn_enemies : bool = true
 var can_spawn : bool = true
 
-
 func _ready() -> void:
 	get_tree().create_timer(15).timeout.connect(func() -> void: spawn_enemies = false)
 
 func spawn_enemy() -> void:
 	var enemy = BASICBUBBLE.instantiate()
+	
 	add_child(enemy)
 	can_spawn = true
 

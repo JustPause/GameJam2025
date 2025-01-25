@@ -1,17 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkbkw76fub7ui"]
+[gd_scene load_steps=9 format=3 uid="uid://bs513idvwuov3"]
 
-[ext_resource type="Script" path="res://entities/bubble/BasicBubble.gd" id="1_1wmoo"]
-[ext_resource type="Texture2D" uid="uid://bl3ml0pw3i87p" path="res://entities/bubble/basic_bubble.png" id="2_hlvc1"]
-[ext_resource type="Shader" path="res://entities/bubble/basic_bubble.gdshader" id="2_m183l"]
-[ext_resource type="PackedScene" uid="uid://bnqdis37vcu87" path="res://components/hitbox.tscn" id="3_mcbc4"]
+[ext_resource type="Shader" path="res://entities/bubble/basic_bubble.gdshader" id="1_7n5si"]
+[ext_resource type="Script" path="res://Code/basic_bubble.gd" id="1_qfp4e"]
+[ext_resource type="Texture2D" uid="uid://bl3ml0pw3i87p" path="res://entities/bubble/basic_bubble.png" id="2_8srle"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wk86i"]
-shader = ExtResource("2_m183l")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2bft4"]
+shader = ExtResource("1_7n5si")
 shader_parameter/flash_color = Color(0.84441, 0, 0.169327, 1)
 shader_parameter/flash_value = 0.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_4wfc8"]
-radius = 29.0689
 
 [sub_resource type="Animation" id="Animation_gj0wr"]
 length = 0.001
@@ -50,26 +46,21 @@ _data = {
 "dammage_flash": SubResource("Animation_cv0mv")
 }
 
-[node name="BasicBubble" type="PathFollow2D"]
-rotates = false
-loop = false
-script = ExtResource("1_1wmoo")
+[sub_resource type="CircleShape2D" id="CircleShape2D_t1tqp"]
+radius = 29.0689
+
+[node name="Node2D" type="CharacterBody2D"]
+script = ExtResource("1_qfp4e")
 
 [node name="BasicBubble" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_wk86i")
+material = SubResource("ShaderMaterial_2bft4")
 scale = Vector2(0.15, 0.15)
-texture = ExtResource("2_hlvc1")
-
-[node name="HitBox" parent="." instance=ExtResource("3_mcbc4")]
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource("CircleShape2D_4wfc8")
+texture = ExtResource("2_8srle")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_8xgsl")
 }
 
-[connection signal="damage" from="HitBox" to="." method="damage"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t1tqp")
