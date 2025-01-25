@@ -21,12 +21,15 @@ var current_bubble_health : float
 #current image scale of bubble
 var current_scale : Vector2
 
+var killed : bool = false
 func kill() -> void:
-	remove_child(audio_player)
-	AudioManager.add_child(audio_player)
-	audio_player.play()
-	audio_player.finished.connect(audio_player.queue_free)
-	call_deferred("queue_free")
+	if not killed:
+		killed = true
+		remove_child(audio_player)
+		AudioManager.add_child(audio_player)
+		audio_player.play()
+		audio_player.finished.connect(audio_player.queue_free)
+		call_deferred("queue_free")
 
 func hit_on_caselle() -> void:
 	print("hit")

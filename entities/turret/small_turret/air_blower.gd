@@ -4,16 +4,16 @@ extends Node2D
 @export var damage : float = 1
 @export var attack_speed : float = 0.4
 
-@export var draw_circle_outline : bool = true
+@export var draw_circle_outline : bool = true:
+	set(value):
+		can_shoot = value
+		queue_redraw()
 
 @onready var enemy_detector : Area2D = $EnemyDetector
 @onready var particles : CPUParticles2D = $GPUParticles2D
 
 var enemies_in_range : Array[HitBox]
-var can_shoot : bool = true :
-	set(value):
-		can_shoot = value
-		queue_redraw()
+var can_shoot : bool = true
 
 
 func add_area(area : Area2D) -> void:

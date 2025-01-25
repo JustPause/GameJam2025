@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://vg7ige6kku6i"]
+[gd_scene load_steps=10 format=4 uid="uid://vg7ige6kku6i"]
 
 [ext_resource type="Script" path="res://Code/Map.gd" id="1_putcg"]
 [ext_resource type="Texture2D" uid="uid://dv7bp8snjam25" path="res://Assets/Water.png" id="1_tpi1q"]
 [ext_resource type="PackedScene" uid="uid://dkk5x4jq0j1mv" path="res://Scene/UI.tscn" id="1_vwbbn"]
 [ext_resource type="Script" path="res://Code/enemy_spawner.gd" id="2_ygyud"]
 [ext_resource type="Script" path="res://Scene/Buildings.gd" id="4_kpbxv"]
+[ext_resource type="PackedScene" uid="uid://i584myvhuq56" path="res://entities/turret/fire_turret/fire_blower.tscn" id="6_jqx6v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3f5yi"]
 texture = ExtResource("1_tpi1q")
@@ -67,3 +68,6 @@ offset_right = 0.0
 offset_bottom = 319.0
 size_flags_vertical = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="FireBlower" parent="." instance=ExtResource("6_jqx6v")]
+position = Vector2(300, 205)
