@@ -16,7 +16,7 @@ class Wave_data:
 class Enemys:
 	var name_enemys: String
 	var enemy_type: String
-	var max_health: int
+	var max_health: float
 	var health: float
 	var base_damage: int
 	var max_size_growth: Vector2
@@ -43,12 +43,12 @@ var count = 0
 
 var wave=[]
 var enemys = [
-	Enemys.new("Basic Bubble", "Air", 5, 5.0, 1, Vector2(0.3, 0.3), 300.0,basic_bubble_scene),
-	Enemys.new("Basic Bubble1", "Air", 5, 5.0, 1, Vector2(0.3, 0.3), 300.0,basic_bubble_scene),
-	Enemys.new("Basic Bubble2", "Air", 5, 5.0, 1, Vector2(0.3, 0.3), 300.0,basic_bubble_scene),
-	Enemys.new("Basic Bubble3", "Air", 5, 5.0, 1, Vector2(0.3, 0.3), 300.0,basic_bubble_scene),
-	Enemys.new("Basic Bubble4", "Air", 5, 5.0, 1, Vector2(0.3, 0.3), 300.0,basic_bubble_scene),
-	Enemys.new("Basic Bubble5", "Air", 5, 5.0, 1, Vector2(0.3, 0.3), 300.0,basic_bubble_scene)
+	Enemys.new("Basic Bubble", "Air", 5.0, 5.0, 1, Vector2(0.3, 0.3), 300.0,basic_bubble_scene),
+	Enemys.new("Basic Bubble1", "Air", 5.0, 5.0, 1, Vector2(0.3, 0.3), 300.0,basic_bubble_scene),
+	Enemys.new("Basic Bubble2", "Air", 5.0, 5.0, 1, Vector2(0.3, 0.3), 300.0,basic_bubble_scene),
+	Enemys.new("Basic Bubble3", "Air", 5.0, 5.0, 1, Vector2(0.3, 0.3), 300.0,basic_bubble_scene),
+	Enemys.new("Basic Bubble4", "Air", 5.0, 5.0, 1, Vector2(0.3, 0.3), 300.0,basic_bubble_scene),
+	Enemys.new("Basic Bubble5", "Air", 5.0, 5.0, 1, Vector2(0.3, 0.3), 300.0,basic_bubble_scene)
 ]
 
 func _ready() -> void:

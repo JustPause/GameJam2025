@@ -4,16 +4,19 @@ extends PathFollow2D
 @onready var sprite : Sprite2D = $BasicBubble
 @onready var audio_player : AudioStreamPlayer = $AudioStreamPlayer
 
-@export var speed: float = 300.0 #px/s
+@export var name_enemys: String
+@export var speed: float 
 
-@export var bubble_max_health : float  = 5
+@export var enemy_type: String
+
+@export var max_health : float
 # @export var freeze_max_health : float = 0
 # @export var sheild_max_health : float = 0
 
 @export var base_attack_damage : float = 1
 @export var max_size_growth : Vector2 = Vector2(0.3,0.3)
 
-var current_bubble_health : float
+@export var current_health : float
 # var current_freez_health : float
 # var current_sheild_health : float
 
@@ -35,12 +38,19 @@ func hit_on_caselle() -> void:
 
 func _ready() -> void:
 	
-	print(get_parent().enemys[0].name_enemys)
+	var data = get_parent().enemys[0]
+
+	self.speed=data.speed
+	self.name_enemys=data.name_enemys
+	self.enemy_type=data.enemy_type
+	self.max_health=data.max_health
+	self.current_health=data.health
+	self.base_attack_damage =data.base_damage
+	self.max_size_growth =data.max_size_growth
 	
 	if not get_parent() is Path2D:
 		kill()
-	
-	current_bubble_health = bubble_max_health
+
 	current_scale = sprite.scale
 
 func _process(delta: float) -> void:
@@ -53,13 +63,13 @@ func _process(delta: float) -> void:
 func damage(ammount : float, attack_type : GlobalEnums.TowerAttackTypes) -> void:
 	match attack_type:
 		GlobalEnums.TowerAttackTypes.BUBBLES:
-			current_bubble_health -= ammount
+			current_health -= ammount
 		GlobalEnums.TowerAttackTypes.FIRE:
-			current_bubble_health -= ammount * 2
+			current_health -= ammount * 2
 
-	if current_bubble_health <= 0:
+	if current_health <= 0:
 		kill()
 	
 	anim_player.play("dammage_flash")
-	var new_size : Vector2 = current_scale.lerp(max_size_growth, (bubble_max_health - current_bubble_health)/bubble_max_health)
+	var new_size : Vector2 = current_scale.lerp(max_size_growth, (max_health - current_health)/max_health)
 	get_tree().create_tween().set_trans(Tween.TRANS_ELASTIC).tween_property(sprite, "scale", new_size, 0.2)
