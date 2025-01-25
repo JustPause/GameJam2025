@@ -2,6 +2,7 @@ extends PathFollow2D
 
 @onready var anim_player : AnimationPlayer = $AnimationPlayer
 @onready var sprite : Sprite2D = $BasicBubble
+@onready var audio_player : AudioStreamPlayer = $AudioStreamPlayer
 
 @export var speed: float = 300.0 #px/s
 
@@ -14,6 +15,10 @@ var current_health : int
 var current_scale : Vector2
 
 func kill() -> void:
+	remove_child(audio_player)
+	AudioManager.add_child(audio_player)
+	audio_player.play()
+	audio_player.finished.connect(audio_player.queue_free)
 	call_deferred("queue_free")
 
 func hit_on_caselle() -> void:
