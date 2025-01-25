@@ -20,7 +20,7 @@ var current_target_enemy : HitBox = null
 var can_shoot : bool = false
 
 func shoot_timer() -> void:
-	get_tree().create_timer(attack_wait_time).timeout.connect(func() -> void: can_shoot = true)
+	get_tree().create_timer(attack_wait_time).timeout.connect(func() -> void: if current_target_enemy: can_shoot = true)
 
 func add_area(area : Area2D) -> void:
 	if area is HitBox:

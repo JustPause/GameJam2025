@@ -48,7 +48,7 @@ animations = [{
 script = ExtResource("1_3b0ub")
 radius = 60.0
 damage_rate = 5.0
-attack_wait_time = 0.5
+attack_wait_time = 0.4
 
 [node name="EnemyDetector" type="Area2D" parent="."]
 collision_layer = 0
@@ -81,4 +81,4 @@ position = Vector2(65, 2.0961e-13)
 rotation = 1.5708
 scale = Vector2(0.05, 0.1)
 sprite_frames = SubResource("SpriteFrames_6qjsd")
-frame_progress = 0.337024
+frame_progress = 0.0547421
