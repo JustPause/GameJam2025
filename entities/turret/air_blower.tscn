@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bij4g4evagrt2"]
+[gd_scene load_steps=3 format=3 uid="uid://deujg343ccqv8"]
 
 [ext_resource type="Script" path="res://entities/turret/air_blower.gd" id="1_kp384"]
 [ext_resource type="Texture2D" uid="uid://cyou3562x1ffi" path="res://icon.svg" id="1_u561x"]
