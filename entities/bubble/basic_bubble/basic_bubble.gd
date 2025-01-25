@@ -4,7 +4,6 @@ extends PathFollow2D
 @onready var sprite : Sprite2D = $BasicBubble
 @onready var audio_player : AudioStreamPlayer = $AudioStreamPlayer
 
-
 @export var speed: float = 300.0 #px/s
 
 @export var bubble_max_health : float  = 5
@@ -35,6 +34,9 @@ func hit_on_caselle() -> void:
 	print("hit")
 
 func _ready() -> void:
+	
+	print(get_parent().enemys[0].name_enemys)
+	
 	if not get_parent() is Path2D:
 		kill()
 	

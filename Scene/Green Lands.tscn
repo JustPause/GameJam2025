@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dv7bp8snjam25" path="res://Assets/Water.png" id="1_tpi1q"]
 [ext_resource type="PackedScene" uid="uid://dkk5x4jq0j1mv" path="res://Scene/UI.tscn" id="1_vwbbn"]
 [ext_resource type="Script" path="res://Code/enemy_spawner.gd" id="2_ygyud"]
+[ext_resource type="Script" path="res://Scene/Green Lands.gd" id="4_d3hsg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3f5yi"]
 texture = ExtResource("1_tpi1q")
@@ -24,42 +25,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 70, 2, 0, 0, 0, 0, 70, 553, 0, 0, 0, 0, 263, 552, 0, 0, 0, 0, 261, 167, 0, 0, 0, 0, 791, 170, 0, 0, 0, 0, 793, 70, 0, 0, 0, 0, 1080, 73, 0, 0, 0, 0, 1080, 553, 0, 0, 0, 0, 456, 552, 0, 0, 0, 0, 456, 360, 0, 0, 0, 0, 816, 360)
 }
 point_count = 11
-
-[sub_resource type="GDScript" id="GDScript_d2imi"]
-script/source = "extends Node2D
-
-var map_node : Node2D
-const GRID_SIZE = Vector2(16, 16)
-var turret=[]
-
-func _ready() -> void:
-	map_node = get_parent().get_node(\"Map\")
-	snap_to_grid()
-	turret.append(preload(\"res://entities/turret/small_turret/air_blower.tscn\"))
-
-func _process(delta: float) -> void:
-	pass
-
-func snap_to_grid():
-	position = position.snapped(GRID_SIZE)
-	print(position)
-
-func add_turret(turret_name, grid_position: Vector2):
-	var turret = turret_name.instantiate()
-
-	turret.position = grid_position * GRID_SIZE+ Vector2(8,8)
-
-	add_child(turret)
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		var tile = map_node.get_clicked_tile()
-		
-		if typeof(tile) == TYPE_VECTOR2I:
-			add_turret(turret[0], tile)
-			print(tile)
-			print(Vector2(tile) * GRID_SIZE)
-"
 
 [node name="Node2D" type="Node2D"]
 
@@ -89,7 +54,7 @@ tile_set = SubResource("TileSet_ierxv")
 
 [node name="Buildings" type="Node2D" parent="."]
 scale = Vector2(3, 3)
-script = SubResource("GDScript_d2imi")
+script = ExtResource("4_d3hsg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 324)
