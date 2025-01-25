@@ -1,12 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://vg7ige6kku6i"]
+[gd_scene load_steps=10 format=4 uid="uid://vg7ige6kku6i"]
 
 [ext_resource type="Script" path="res://Code/Map.gd" id="1_putcg"]
 [ext_resource type="Texture2D" uid="uid://dv7bp8snjam25" path="res://Assets/Water.png" id="1_tpi1q"]
 [ext_resource type="PackedScene" uid="uid://dkk5x4jq0j1mv" path="res://Scene/UI.tscn" id="1_vwbbn"]
 [ext_resource type="Script" path="res://Code/enemy_spawner.gd" id="2_ygyud"]
-[ext_resource type="PackedScene" uid="uid://deujg343ccqv8" path="res://entities/turret/air_blower.tscn" id="4_vwxgj"]
-[ext_resource type="AudioStream" uid="uid://yk8delyoc4hj" path="res://Assets/battle soundtrack demo1.mp3" id="5_p6563"]
-[ext_resource type="AudioStream" uid="uid://dr33lg3ny5mhb" path="res://Assets/ambience.mp3" id="6_474er"]
+[ext_resource type="PackedScene" uid="uid://bij4g4evagrt2" path="res://entities/turret/air_blower.tscn" id="4_vwxgj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3f5yi"]
 texture = ExtResource("1_tpi1q")
@@ -28,6 +26,43 @@ _data = {
 }
 point_count = 11
 
+[sub_resource type="GDScript" id="GDScript_np2gt"]
+script/source = "extends Node2D
+
+var node : Node2D
+const GRID_SIZE = Vector2(32, 32)
+var turret=[]
+
+func _ready() -> void:
+	node=get_parent().get_node(\"Map\")
+	snap_to_grid()
+	
+
+func _process(delta: float) -> void:
+	pass
+
+func snap_to_grid():
+	position = position.snapped(GRID_SIZE)
+	print(position)
+
+func add_sprite_to_grid(turret_name, grid_position: Vector2):
+	var turret = turret_name.instance()
+
+	turret.position = grid_position * GRID_SIZE
+
+	add_child(turret)
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		#var mouse_pos = node.get_global_mouse_position()
+		var tile = node.get_clicked_tile()
+		
+		
+		
+		#add_sprite_to_grid(AirBlower,tile)
+		print(tile)
+"
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Map" type="Node2D" parent="."]
@@ -43,6 +78,12 @@ tile_set = SubResource("TileSet_ierxv")
 tile_map_data = PackedByteArray("AAABAAAAAAABAAEAAAABAAEAAAABAAEAAAABAAIAAAABAAEAAAABAAMAAAABAAEAAAABAAQAAAABAAEAAAABAAsAAAABAAEAAAABAAoAAAABAAEAAAABAAkAAAABAAEAAAABAAgAAAABAAEAAAABAAcAAAABAAEAAAABAAYAAAABAAEAAAABAAUAAAABAAEAAAACAAsAAAABAAEAAAADAAsAAAABAAEAAAAEAAsAAAABAAEAAAAFAAsAAAABAAEAAAAFAAoAAAABAAEAAAAFAAkAAAABAAEAAAAFAAgAAAABAAEAAAAFAAcAAAABAAEAAAAFAAYAAAABAAEAAAAFAAUAAAABAAEAAAAFAAQAAAABAAEAAAAFAAMAAAABAAEAAAAGAAMAAAABAAEAAAAHAAMAAAABAAEAAAAIAAMAAAABAAEAAAAJAAMAAAABAAEAAAAKAAMAAAABAAEAAAALAAMAAAABAAEAAAAMAAMAAAABAAEAAAANAAMAAAABAAEAAAAOAAMAAAABAAEAAAAPAAMAAAABAAEAAAAQAAMAAAABAAEAAAAQAAIAAAABAAEAAAAQAAEAAAABAAEAAAARAAEAAAABAAEAAAASAAEAAAABAAEAAAATAAEAAAABAAEAAAAUAAEAAAABAAEAAAAVAAEAAAABAAEAAAAWAAEAAAABAAEAAAAWAAIAAAABAAEAAAAWAAMAAAABAAEAAAAWAAQAAAABAAEAAAAWAAUAAAABAAEAAAAWAAYAAAABAAEAAAAWAAcAAAABAAEAAAAWAAgAAAABAAEAAAAWAAkAAAABAAEAAAAWAAoAAAABAAEAAAAWAAsAAAABAAEAAAAVAAsAAAABAAEAAAAUAAsAAAABAAEAAAATAAsAAAABAAEAAAASAAsAAAABAAEAAAARAAsAAAABAAEAAAAQAAsAAAABAAEAAAAPAAsAAAABAAEAAAAOAAsAAAABAAEAAAANAAsAAAABAAEAAAAMAAsAAAABAAEAAAALAAsAAAABAAEAAAAKAAsAAAABAAEAAAAJAAsAAAABAAEAAAAJAAoAAAABAAEAAAAJAAkAAAABAAEAAAAJAAgAAAABAAEAAAAJAAcAAAABAAEAAAAKAAcAAAABAAEAAAALAAcAAAABAAEAAAAMAAcAAAABAAEAAAANAAcAAAABAAEAAAAOAAcAAAABAAEAAAAPAAcAAAABAAEAAAA=")
 tile_set = SubResource("TileSet_ierxv")
 
+[node name="EnemyPath" type="Path2D" parent="Map"]
+scale = Vector2(0.333333, 0.333333)
+curve = SubResource("Curve2D_5xwdy")
+script = ExtResource("2_ygyud")
+spawn_time_interval = null
+
 [node name="Casele" type="TileMapLayer" parent="Map"]
 tile_map_data = PackedByteArray("AAAQAAgAAAAAAAAAAAARAAgAAAAAAAAAAAARAAkAAAAAAAAAAAASAAkAAAAAAAAAAAATAAkAAAAAAAAAAAATAAgAAAAAAAAAAAAUAAgAAAAAAAAAAAAUAAcAAAAAAAAAAAAUAAYAAAAAAAAAAAATAAYAAAAAAAAAAAATAAUAAAAAAAAAAAASAAUAAAAAAAAAAAARAAUAAAAAAAAAAAARAAYAAAAAAAAAAAAQAAYAAAAAAAAAAAAQAAcAAAAAAAAAAAARAAcAAAABAAIAAAASAAcAAAABAAIAAAASAAYAAAABAAIAAAASAAgAAAABAAIAAAATAAcAAAABAAIAAAA=")
 tile_set = SubResource("TileSet_ierxv")
@@ -50,19 +91,12 @@ tile_set = SubResource("TileSet_ierxv")
 [node name="Buldings" type="TileMapLayer" parent="Map"]
 tile_set = SubResource("TileSet_ierxv")
 
-[node name="EnemyPath" type="Path2D" parent="Map"]
-scale = Vector2(0.333333, 0.333333)
-curve = SubResource("Curve2D_5xwdy")
-script = ExtResource("2_ygyud")
-spawn_time_interval = null
+[node name="Buildings" type="Node2D" parent="."]
+position = Vector2(-258.999, -114)
+scale = Vector2(3, 3)
+script = SubResource("GDScript_np2gt")
 
-[node name="AirBlower" parent="Map" instance=ExtResource("4_vwxgj")]
-position = Vector2(105.667, 74)
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Map"]
-stream = ExtResource("5_p6563")
-autoplay = true
-parameters/looping = true
+[node name="AirBlower" parent="Buildings" instance=ExtResource("4_vwxgj")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -73,9 +107,3 @@ offset_right = 0.0
 offset_bottom = 328.0
 size_flags_vertical = 1
 metadata/_edit_use_anchors_ = true
-
-[node name="Ambience" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_474er")
-volume_db = -12.18
-autoplay = true
-parameters/looping = true
