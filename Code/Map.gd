@@ -21,9 +21,11 @@ func should_block_input() -> bool:
 
 func get_clicked_tile_power():
 	var returning = []
+	var clicked_cell
+	var data
 	for tile in tile_maps:
-		var clicked_cell = tile.local_to_map(tile.get_local_mouse_position())
-		var data = tile.get_cell_tile_data(clicked_cell)
+		clicked_cell = tile.local_to_map(tile.get_local_mouse_position())
+		data = tile.get_cell_tile_data(clicked_cell)
 		
 		if data == null:
 			print("free")
