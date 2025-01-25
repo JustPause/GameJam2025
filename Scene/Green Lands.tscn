@@ -30,18 +30,37 @@ point_count = 11
 script/source = "extends Node2D
 
 var node : Node2D
-# Called when the node enters the scene tree for the first time.
+const GRID_SIZE = Vector2(32, 32)
+var turret=[]
+
 func _ready() -> void:
 	node=get_parent().get_node(\"Map\")
+	snap_to_grid()
+	
 
 func _process(delta: float) -> void:
 	pass
 
+func snap_to_grid():
+	position = position.snapped(GRID_SIZE)
+	print(position)
+
+func add_sprite_to_grid(turret_name, grid_position: Vector2):
+	var turret = turret_name.instance()
+
+	turret.position = grid_position * GRID_SIZE
+
+	add_child(turret)
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		print(\"a\")
-		var mouse_pos = node.get_global_mouse_position()
+		#var mouse_pos = node.get_global_mouse_position()
 		var tile = node.get_clicked_tile()
+		
+		
+		
+		#add_sprite_to_grid(AirBlower,tile)
+		print(tile)
 "
 
 [node name="Node2D" type="Node2D"]
