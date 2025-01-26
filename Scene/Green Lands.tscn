@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://vg7ige6kku6i"]
+[gd_scene load_steps=14 format=4 uid="uid://vg7ige6kku6i"]
 
 [ext_resource type="Script" path="res://Code/Map.gd" id="1_putcg"]
 [ext_resource type="Texture2D" uid="uid://dv7bp8snjam25" path="res://Assets/Water.png" id="1_tpi1q"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scene/Green Lands.gd" id="4_d3hsg"]
 [ext_resource type="PackedScene" path="res://main_bablue.tscn" id="5_6lny1"]
 [ext_resource type="Script" path="res://main_bablue.gd" id="6_ek7el"]
+[ext_resource type="Script" path="res://Scene/ui.gd" id="9_d51oo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3f5yi"]
 texture = ExtResource("1_tpi1q")
@@ -87,4 +88,5 @@ offset_top = 319.0
 offset_right = 0.0
 offset_bottom = 319.0
 size_flags_vertical = 1
+script = ExtResource("9_d51oo")
 metadata/_edit_use_anchors_ = true
