@@ -43,7 +43,9 @@ Size is 40*40 grid for each level
 
 ---
 
-- Rounds 5
+- Rounds 1 - 5
+- Coundoun till the Rounds
+  
 - Death screen
 - Base bublue expasion
 - Tiles look
