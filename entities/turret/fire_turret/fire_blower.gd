@@ -29,7 +29,7 @@ func add_area(area : Area2D) -> void:
 			timer.start()
 		
 		#lambda func becaus weird error was occuring when binded to remove area
-		area.tree_exiting.connect(remove_area.bind(area))
+		# area.tree_exiting.connect(remove_area.bind(area))
 
 
 
@@ -37,18 +37,8 @@ func remove_area(area : Area2D) -> void:
 	enemies_in_range.erase(area)
 
 	if area == current_target_enemy:
-		can_shoot = false
-		flame.visible = false
 		current_target_enemy = null
 
-		var lowest_ratio : float =  1
-		for enemy in enemies_in_range:
-			if lowest_ratio > enemy.get_parent().progress_ratio:
-				lowest_ratio = enemy.get_parent().progress_ratio
-				current_target_enemy = enemy
-
-		if current_target_enemy:
-			timer.start()
 
 func _ready() -> void:
 	var collision_shape := CollisionShape2D.new()
@@ -67,16 +57,30 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if not current_target_enemy and not can_shoot:
-		flame_audio.playing = false
-		return
-	
-	if not flame_audio.playing:
-		flame_audio.play()
+	if current_target_enemy:
+		look_at(current_target_enemy.global_position)
+		if can_shoot:
+			if not flame_audio.playing:
+				flame_audio.play()
 
-	look_at(current_target_enemy.global_position)
-	flame.visible = true
-	current_target_enemy.emit_signal("damage", damage_rate * _delta, GlobalEnums.TowerAttackTypes.FIRE)
+			flame.visible = true
+			current_target_enemy.emit_signal("damage", damage_rate * _delta, GlobalEnums.TowerAttackTypes.FIRE)
+	else:
+		flame.visible = false
+		flame_audio.playing = false
+
+	if not current_target_enemy and can_shoot:
+		can_shoot = false
+
+		var lowest_ratio : float =  1
+		for enemy in enemies_in_range:
+			if lowest_ratio > enemy.get_parent().progress_ratio:
+				lowest_ratio = enemy.get_parent().progress_ratio
+				current_target_enemy = enemy
+
+		if current_target_enemy:
+			timer.start()
+
 	
 
 

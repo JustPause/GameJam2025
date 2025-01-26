@@ -11,14 +11,18 @@ extends Node2D
 
 @onready var enemy_detector : Area2D = $EnemyDetector
 @onready var particles : CPUParticles2D = $GPUParticles2D
+@onready var shoot_sound : AudioStreamPlayer = $AudioStreamPlayer
 
 var enemies_in_range : Array[HitBox]
 var can_shoot : bool = true
-
+var current_target_enemy : HitBox = null
 
 func add_area(area : Area2D) -> void:
 	if area is HitBox:
 		enemies_in_range.append(area)
+
+		if not current_target_enemy:
+			current_target_enemy = area
 
 		#lambda func becaus weird error was occuring when binded to remove area
 		area.tree_exiting.connect(func() -> void: enemies_in_range.erase(area))
@@ -26,21 +30,23 @@ func add_area(area : Area2D) -> void:
 func remove_area(area : Area2D) -> void:
 	enemies_in_range.erase(area)
 
+	if area == current_target_enemy:
+		current_target_enemy = null
+
 func shoot() -> void:
 	can_shoot = false
 	get_tree().create_timer(attack_speed).timeout.connect(func() -> void: can_shoot = true)
 
 	#findes the node wich is the furtherest into the tree
 	var highest_ratio : float =  0
-	var target_enemy : HitBox = enemies_in_range[0]
 	for enemy in enemies_in_range:
 		if highest_ratio < enemy.get_parent().progress_ratio:
 			highest_ratio = enemy.get_parent().progress_ratio
-			target_enemy = enemy
+			current_target_enemy = enemy
 
-	look_at(target_enemy.global_position)
 	particles.emitting = true
-	target_enemy.emit_signal("damage", damage, GlobalEnums.TowerAttackTypes.BUBBLES)
+	shoot_sound.play()
+	current_target_enemy.emit_signal("damage", damage, GlobalEnums.TowerAttackTypes.BUBBLES)
 
 func _ready() -> void:
 	var collision_shape := CollisionShape2D.new()
@@ -56,6 +62,9 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if can_shoot and enemies_in_range.size() > 0:
 		shoot()
+	
+	if current_target_enemy:
+		look_at(current_target_enemy.global_position)
 
 
 func _draw() -> void:
