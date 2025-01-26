@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkk5x4jq0j1mv"]
+[gd_scene load_steps=4 format=3 uid="uid://blcs3y81ln4l0"]
 
 [ext_resource type="Texture2D" uid="uid://c33r70jus7jlc" path="res://entities/turret/fire_turret/fire_turret.png" id="1_up7yp"]
 [ext_resource type="Texture2D" uid="uid://ctirmm5hmodnk" path="res://entities/turret/small_turret/bubble_turret_small.png" id="2_oheqh"]
