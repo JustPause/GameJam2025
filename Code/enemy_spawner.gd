@@ -90,10 +90,14 @@ func spawn_enemy(units) -> void:
 	can_spawn = true
 
 func _physics_process(_delta: float) -> void:
-	if spawn_enemies and can_spawn and (wave[current_wave_index].units_count > count) and  wave[current_wave_index + 1] != null:
-		if wave[current_wave_index + 1].round == wave[current_wave_index].round and wave[current_wave_index].units_count ==count+1:
-			current_wave_index=current_wave_index+1
-			count=0
+	if spawn_enemies and can_spawn and (wave[current_wave_index].units_count > count):
+		# Check if current_wave_index + 1 is within bounds
+		if (current_wave_index + 1) < wave.size():
+			if wave[current_wave_index + 1] != null and wave[current_wave_index + 1].round == wave[current_wave_index].round and wave[current_wave_index].units_count == count + 1:
+				current_wave_index += 1
+				count = 0
+		
+		# Spawn enemy
 		spawn_enemy(wave[current_wave_index].units)
 		count += 1
 		can_spawn = false

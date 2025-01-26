@@ -19,6 +19,10 @@ var enemies_in_range : Array[HitBox]
 
 var current_target_enemy : HitBox = null
 var can_shoot : bool = false
+var price = 200
+
+func pay():
+	return price
 
 func add_area(area : Area2D) -> void:
 	if area is HitBox:

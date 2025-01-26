@@ -9,6 +9,8 @@ func _ready() -> void:
 	map_node = get_parent().get_node("Map")
 	snap_to_grid()
 	turret.append(preload("res://entities/turret/small_turret/air_blower.tscn"))
+	turret.append(preload("res://entities/turret/medium_turret/air_blower_big.tscn"))
+	turret.append(preload("res://entities/turret/fire_turret/fire_blower.tscn"))
 
 func _process(delta: float) -> void:
 	pass

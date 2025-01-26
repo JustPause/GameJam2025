@@ -58,7 +58,7 @@ monitorable = false
 
 [node name="BubbleTurretSmall" type="Sprite2D" parent="."]
 rotation = -1.57079
-scale = Vector2(0.025, 0.025)
+scale = Vector2(0.008, 0.008)
 texture = ExtResource("1_c3wem")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]

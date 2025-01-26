@@ -14,7 +14,7 @@ extends PathFollow2D
 # @export var sheild_max_health : float = 0
 
 @export var base_attack_damage : float = 1
-@export var max_size_growth : Vector2 = Vector2(0.3,0.3)
+@export var max_size_growth : Vector2 = Vector2(0.6,0.6)
 
 @export var current_health : float
 # var current_freez_health : float
