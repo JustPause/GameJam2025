@@ -69,7 +69,6 @@ func damage(ammount : float, attack_type : GlobalEnums.TowerAttackTypes) -> void
 	anim_player.play("dammage_flash")
 
 	if current_freeze_health <= 0:
-		get_node("../../../Buildings").points += 75
 		freezeSprite.visible = false
 		sprite.visible = true
 
@@ -77,4 +76,5 @@ func damage(ammount : float, attack_type : GlobalEnums.TowerAttackTypes) -> void
 		get_tree().create_tween().set_trans(Tween.TRANS_ELASTIC).tween_property(sprite, "scale", new_size, 0.2)
 
 	if current_bubble_health <= 0 or current_bubble_health >= bubble_overflow:
+		get_node("../../../Buildings").points += 50
 		kill()

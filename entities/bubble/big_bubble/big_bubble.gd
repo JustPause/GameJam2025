@@ -46,7 +46,7 @@ func update(i) -> void:
 	self.name_enemys=data.name_enemys
 	self.enemy_type=data.enemy_type
 	self.max_health=data.max_health
-	self.current_health=data.health
+	self.current_health=max_health
 	self.base_attack_damage =data.base_damage
 	self.max_size_growth =data.max_size_growth
 	
@@ -55,6 +55,9 @@ func update(i) -> void:
 func _ready() -> void:
 	
 	update(1)
+	
+	print(current_health)
+
 	
 	if not get_parent() is Path2D:
 		kill()
@@ -76,7 +79,7 @@ func damage(ammount : float, attack_type : GlobalEnums.TowerAttackTypes) -> void
 			current_health -= ammount * 2
 
 	if current_health <= 0 or current_health >= bubble_overflow:
-		get_node("../../../Buildings").points += 50
+		get_node("../../../Buildings").points += 30
 		kill()
 	
 	anim_player.play("dammage_flash")

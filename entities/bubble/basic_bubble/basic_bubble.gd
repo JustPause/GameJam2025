@@ -1,31 +1,31 @@
 extends PathFollow2D
 
-@onready var anim_player : AnimationPlayer = $AnimationPlayer
-@onready var sprite : Sprite2D = $BasicBubble
-@onready var audio_player : AudioStreamPlayer = $AudioStreamPlayer
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var sprite: Sprite2D = $BasicBubble
+@onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 
-var bubble_overflow=50;
+var bubble_overflow = 50;
 
 @export var name_enemys: String
-@export var speed: float 
+@export var speed: float
 
 @export var enemy_type: String
 
-@export var max_health : float
+@export var max_health: float
 # @export var freeze_max_health : float = 0
 # @export var sheild_max_health : float = 0
 
-@export var base_attack_damage : float = 1
-@export var max_size_growth : Vector2 = Vector2(0.3,0.3)
+@export var base_attack_damage: float = 1
+@export var max_size_growth: Vector2 = Vector2(0.3, 0.3)
 
-@export var current_health : float
+@export var current_health: float
 # var current_freez_health : float
 # var current_sheild_health : float
 
 #current image scale of bubble
-var current_scale : Vector2
+var current_scale: Vector2
 
-var killed : bool = false
+var killed: bool = false
 func kill() -> void:
 	if not killed:
 		killed = true
@@ -43,18 +43,20 @@ func _ready() -> void:
 	
 	var data = get_parent().enemys[0]
 
-	self.speed=data.speed
-	self.name_enemys=data.name_enemys
-	self.enemy_type=data.enemy_type
-	self.max_health=data.max_health
-	self.current_health=data.health
-	self.base_attack_damage =data.base_damage
-	self.max_size_growth =data.max_size_growth
+	self.speed = data.speed
+	self.name_enemys = data.name_enemys
+	self.enemy_type = data.enemy_type
+	self.max_health = data.max_health
+	self.current_health = data.health
+	self.base_attack_damage = data.base_damage
+	self.max_size_growth = data.max_size_growth
 	
 	current_health = max_health
 	
 	if not get_parent() is Path2D:
 		kill()
+
+	
 
 	current_scale = sprite.scale
 
@@ -65,7 +67,7 @@ func _process(delta: float) -> void:
 		hit_on_caselle()
 		kill()
 
-func damage(ammount : float, attack_type : GlobalEnums.TowerAttackTypes) -> void:
+func damage(ammount: float, attack_type: GlobalEnums.TowerAttackTypes) -> void:
 	match attack_type:
 		GlobalEnums.TowerAttackTypes.BUBBLES:
 			current_health += ammount
@@ -73,9 +75,9 @@ func damage(ammount : float, attack_type : GlobalEnums.TowerAttackTypes) -> void
 			current_health -= ammount * 2
 
 	if current_health <= 0 or current_health >= bubble_overflow:
-		get_node("../../../Buildings").points += 25
+		get_node("../../../Buildings").points += 10
 		kill()
 	
 	anim_player.play("dammage_flash")
-	var new_size : Vector2 = current_scale.lerp(max_size_growth, (max_health - current_health)/max_health)
+	var new_size: Vector2 = current_scale.lerp(max_size_growth, (max_health - current_health) / max_health)
 	get_tree().create_tween().set_trans(Tween.TRANS_ELASTIC).tween_property(sprite, "scale", new_size, 0.2)
