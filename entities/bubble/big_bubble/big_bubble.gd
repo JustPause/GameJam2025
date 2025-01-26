@@ -14,7 +14,7 @@ extends PathFollow2D
 # @export var sheild_max_health : float = 0
 
 @export var base_attack_damage : float = 1
-@export var max_size_growth : Vector2 = Vector2(0.6,0.6)
+@export var max_size_growth : Vector2
 
 @export var current_health : float
 # var current_freez_health : float
@@ -48,6 +48,8 @@ func update(i) -> void:
 	self.current_health=data.health
 	self.base_attack_damage =data.base_damage
 	self.max_size_growth =data.max_size_growth
+	
+	current_scale=current_scale.lerp(max_size_growth, (max_health - current_health)/max_health/10)
 
 func _ready() -> void:
 	
@@ -76,5 +78,5 @@ func damage(ammount : float, attack_type : GlobalEnums.TowerAttackTypes) -> void
 		kill()
 	
 	anim_player.play("dammage_flash")
-	var new_size : Vector2 = current_scale.lerp(max_size_growth, (max_health - current_health)/max_health)
+	var new_size : Vector2 = current_scale.lerp(max_size_growth, (max_health - current_health)/max_health/10)
 	get_tree().create_tween().set_trans(Tween.TRANS_ELASTIC).tween_property(sprite, "scale", new_size, 0.2)

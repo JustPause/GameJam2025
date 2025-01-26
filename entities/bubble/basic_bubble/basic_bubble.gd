@@ -49,6 +49,8 @@ func _ready() -> void:
 	self.base_attack_damage =data.base_damage
 	self.max_size_growth =data.max_size_growth
 	
+	current_health = max_health
+	
 	if not get_parent() is Path2D:
 		kill()
 
@@ -69,6 +71,7 @@ func damage(ammount : float, attack_type : GlobalEnums.TowerAttackTypes) -> void
 			current_health -= ammount * 2
 
 	if current_health <= 0:
+		get_node("../../../Buildings").points += round(max_health)*5
 		kill()
 	
 	anim_player.play("dammage_flash")

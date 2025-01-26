@@ -8,7 +8,7 @@ extends PathFollow2D
 
 @export var speed: float = 300.0 #px/s
 
-@export var bubble_max_health : float  = 4
+@export var bubble_max_health : float  = 100
 @export var freeze_max_health : float = 2
 # @export var sheild_max_health : float = 0
 
@@ -68,6 +68,7 @@ func damage(ammount : float, attack_type : GlobalEnums.TowerAttackTypes) -> void
 	anim_player.play("dammage_flash")
 
 	if current_freeze_health <= 0:
+		get_node("../../../Buildings").points += round(bubble_max_health)*5
 		freezeSprite.visible = false
 		sprite.visible = true
 

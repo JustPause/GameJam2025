@@ -3,7 +3,7 @@ extends Node2D
 var map_node : Node2D
 const GRID_SIZE = Vector2(16, 16)
 var turret=[]
-var points = 1000
+var points = 200
 
 func _ready() -> void:
 	map_node = get_parent().get_node("Map")

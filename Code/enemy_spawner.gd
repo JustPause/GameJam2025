@@ -49,8 +49,8 @@ var wave = []
 var current_wave_index: int = 0
 var wave_timer: Timer
 var enemys = [
-	Enemys.new("Basic Bubble", "Air", 5.0, 5.0, 1, Vector2(0.3, 0.3), 600.0, basic_bubble_scene),
-	Enemys.new("Basic Bubble1", "Air", 5.0, 5.0, 1, Vector2(0.6, 0.6), 300.0, basic_bubble_scene),
+	Enemys.new("Basic Bubble", "Air", 5.0, 25.0, 1, Vector2(0.3, 0.3), 600.0, basic_bubble_scene),
+	Enemys.new("Basic Bubble1", "Air", 5.0, 30.0, 1, Vector2(0.6, 0.6), 300.0, basic_bubble_scene),
 	Enemys.new("Basic Bubble2", "Air", 5.0, 5.0, 1, Vector2(0.3, 0.3), 150.0, ice_bubble_scene)
 	]
 
