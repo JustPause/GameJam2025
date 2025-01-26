@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxfx8j18umj2r"]
+
+[ext_resource type="Script" path="res://entities/turret/small_turret/air_blower.gd" id="1_uoclh"]
+[ext_resource type="Texture2D" uid="uid://ytxltjf3hpru" path="res://entities/turret/medium_turret/bubble_turret_big.png" id="2_8h1xq"]
+[ext_resource type="Texture2D" uid="uid://c8d7q7ifkxa13" path="res://entities/turret/medium_turret/bubble_big.png" id="3_3ej20"]
+[ext_resource type="AudioStream" uid="uid://xb8ux2p7y13c" path="res://entities/turret/medium_turret/turret big.mp3" id="4_4mv1p"]
+
+[node name="AirBlowerBig" type="Node2D"]
+script = ExtResource("1_uoclh")
+radius = 50.0
+damage = 3.0
+attack_speed = 1.0
+
+[node name="EnemyDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="BubbleTurretSmall" type="Sprite2D" parent="."]
+rotation = -1.57079
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("2_8h1xq")
+
+[node name="GPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(15, 0)
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.75
+texture = ExtResource("3_3ej20")
+particle_flag_align_y = true
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 80.0
+scale_amount_min = 0.01
+scale_amount_max = 0.02
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_4mv1p")
