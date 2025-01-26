@@ -4,6 +4,8 @@ extends PathFollow2D
 @onready var sprite : Sprite2D = $BasicBubble
 @onready var audio_player : AudioStreamPlayer = $AudioStreamPlayer
 
+var bubble_overflow=50;
+
 @export var name_enemys: String
 @export var speed: float 
 
@@ -66,12 +68,12 @@ func _process(delta: float) -> void:
 func damage(ammount : float, attack_type : GlobalEnums.TowerAttackTypes) -> void:
 	match attack_type:
 		GlobalEnums.TowerAttackTypes.BUBBLES:
-			current_health -= ammount
+			current_health += ammount
 		GlobalEnums.TowerAttackTypes.FIRE:
 			current_health -= ammount * 2
 
-	if current_health <= 0:
-		get_node("../../../Buildings").points += round(max_health)*5
+	if current_health <= 0 or current_health >= bubble_overflow:
+		get_node("../../../Buildings").points += 25
 		kill()
 	
 	anim_player.play("dammage_flash")

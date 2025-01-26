@@ -24,11 +24,10 @@ class Enemys:
 	var speed: float
 	var scene: PackedScene
 	
-	func _init(name_enemys, enemy_type, max_health, health, base_damage, max_size_growth, speed, scene):
+	func _init(name_enemys, enemy_type, max_health, base_damage, max_size_growth, speed, scene):
 		self.name_enemys = name_enemys
 		self.enemy_type = enemy_type
 		self.max_health = max_health
-		self.health = health
 		self.base_damage = base_damage
 		self.max_size_growth = max_size_growth
 		self.speed = speed
@@ -49,9 +48,9 @@ var wave = []
 var current_wave_index: int = 0
 var wave_timer: Timer
 var enemys = [
-	Enemys.new("Basic Bubble", "Air", 5.0, 25.0, 1, Vector2(0.3, 0.3), 600.0, basic_bubble_scene),
-	Enemys.new("Basic Bubble1", "Air", 5.0, 30.0, 1, Vector2(0.6, 0.6), 300.0, basic_bubble_scene),
-	Enemys.new("Basic Bubble2", "Air", 5.0, 5.0, 1, Vector2(0.3, 0.3), 150.0, ice_bubble_scene)
+	Enemys.new("Basic Bubble", "Air", 25.0, 1, Vector2(0.3, 0.3), 400.0, basic_bubble_scene),
+	Enemys.new("Basic Bubble1", "Air", 30.0, 1, Vector2(0.6, 0.6), 200.0, basic_bubble_scene),
+	Enemys.new("Basic Bubble2", "Air", 5.0, 1, Vector2(0.3, 0.3), 100.0, ice_bubble_scene)
 	]
 
 func _ready() -> void:

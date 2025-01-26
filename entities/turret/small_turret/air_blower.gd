@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var radius : float = 75
-@export var damage : float = 1
+@export var damage : float = 3
 @export var attack_speed : float = 0.4
 var price =100
 

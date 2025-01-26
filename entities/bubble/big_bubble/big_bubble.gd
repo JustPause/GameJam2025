@@ -6,6 +6,7 @@ extends PathFollow2D
 
 @export var name_enemys: String
 @export var speed: float 
+var bubble_overflow=200;
 
 @export var enemy_type: String
 
@@ -70,13 +71,14 @@ func _process(delta: float) -> void:
 func damage(ammount : float, attack_type : GlobalEnums.TowerAttackTypes) -> void:
 	match attack_type:
 		GlobalEnums.TowerAttackTypes.BUBBLES:
-			current_health -= ammount
+			current_health += ammount
 		GlobalEnums.TowerAttackTypes.FIRE:
 			current_health -= ammount * 2
 
-	if current_health <= 0:
+	if current_health <= 0 or current_health >= bubble_overflow:
+		get_node("../../../Buildings").points += 50
 		kill()
 	
 	anim_player.play("dammage_flash")
-	var new_size : Vector2 = current_scale.lerp(max_size_growth, (max_health - current_health)/max_health/10)
+	var new_size : Vector2 = current_scale.lerp(max_size_growth, (max_health - current_health)/max_health)
 	get_tree().create_tween().set_trans(Tween.TRANS_ELASTIC).tween_property(sprite, "scale", new_size, 0.2)

@@ -8,8 +8,9 @@ extends PathFollow2D
 
 @export var speed: float = 300.0 #px/s
 
+var bubble_overflow=200;
 @export var bubble_max_health : float  = 100
-@export var freeze_max_health : float = 2
+@export var freeze_max_health : float = 200
 # @export var sheild_max_health : float = 0
 
 @export var base_attack_damage : float = 2
@@ -57,7 +58,7 @@ func damage(ammount : float, attack_type : GlobalEnums.TowerAttackTypes) -> void
 			if current_freeze_health > 0:
 				current_freeze_health -= ammount * 0.5
 			else:
-				current_bubble_health -= ammount
+				current_bubble_health += ammount
 			
 		GlobalEnums.TowerAttackTypes.FIRE:
 			if current_freeze_health > 0:
@@ -68,12 +69,12 @@ func damage(ammount : float, attack_type : GlobalEnums.TowerAttackTypes) -> void
 	anim_player.play("dammage_flash")
 
 	if current_freeze_health <= 0:
-		get_node("../../../Buildings").points += round(bubble_max_health)*5
+		get_node("../../../Buildings").points += 75
 		freezeSprite.visible = false
 		sprite.visible = true
 
 		var new_size : Vector2 = current_scale.lerp(max_size_growth, (bubble_max_health - current_bubble_health)/bubble_max_health)
 		get_tree().create_tween().set_trans(Tween.TRANS_ELASTIC).tween_property(sprite, "scale", new_size, 0.2)
 
-	if current_bubble_health <= 0:
+	if current_bubble_health <= 0 or current_bubble_health >= bubble_overflow:
 		kill()

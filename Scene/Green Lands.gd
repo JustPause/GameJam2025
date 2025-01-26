@@ -28,7 +28,7 @@ func _input(event: InputEvent) -> void:
 		var tile = map_node.get_clicked_tile()
 	
 		var turret_t=turret[0].instantiate()
-		if typeof(tile) == TYPE_VECTOR2I and points>turret_t.price and tile is Vector2i:
+		if typeof(tile) == TYPE_VECTOR2I and points>=turret_t.price and tile is Vector2i:
 
 			place_tile_at_location(tile)
 			points=points-turret_t.pay()
