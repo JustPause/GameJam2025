@@ -1,0 +1,107 @@
+[gd_scene load_steps=2 format=3 uid="uid://cncqiisbtgevy"]
+
+[ext_resource type="Theme" uid="uid://bld64og4icfc6" path="res://Scene/Main_UI_Theme.tres" id="1_kngsl"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -297.0
+offset_top = -184.5
+offset_right = 297.0
+offset_bottom = 184.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel2" type="Panel" parent="."]
+offset_left = 152.0
+offset_top = 119.5
+offset_right = 351.0
+offset_bottom = 194.5
+scale = Vector2(1.45262, 0.795984)
+theme = ExtResource("1_kngsl")
+
+[node name="Button" type="Button" parent="Panel2"]
+offset_right = 199.0
+offset_bottom = 75.0
+text = "
+"
+
+[node name="Label" type="Label" parent="Panel2/Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.6441
+offset_top = -9.86125
+offset_right = 30.3559
+offset_bottom = 10.1387
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.717954, 1.02491)
+text = "Play"
+
+[node name="Panel3" type="Panel" parent="."]
+offset_left = 152.0
+offset_top = 206.5
+offset_right = 351.0
+offset_bottom = 281.5
+scale = Vector2(0.612617, 0.635983)
+theme = ExtResource("1_kngsl")
+
+[node name="Button" type="Button" parent="Panel3"]
+offset_right = 199.0
+offset_bottom = 75.0
+text = "
+"
+
+[node name="Label" type="Label" parent="Panel3/Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.9417
+offset_top = -10.7697
+offset_right = 19.0583
+offset_bottom = 9.23029
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.29054, 1.21359)
+text = "Options"
+
+[node name="Panel4" type="Panel" parent="."]
+offset_left = 319.0
+offset_top = 206.5
+offset_right = 518.0
+offset_bottom = 281.5
+scale = Vector2(0.612617, 0.635983)
+theme = ExtResource("1_kngsl")
+
+[node name="Button" type="Button" parent="Panel4"]
+offset_right = 199.0
+offset_bottom = 75.0
+text = "
+"
+
+[node name="Label" type="Label" parent="Panel4/Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.9417
+offset_top = -10.7697
+offset_right = 19.0583
+offset_bottom = 9.23029
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.29054, 1.21359)
+text = "Quit"
