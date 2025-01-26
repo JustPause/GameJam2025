@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dkk5x4jq0j1mv" path="res://Scene/UI.tscn" id="1_vwbbn"]
 [ext_resource type="Script" path="res://Code/enemy_spawner.gd" id="2_ygyud"]
 [ext_resource type="Script" path="res://Scene/Green Lands.gd" id="4_d3hsg"]
-[ext_resource type="PackedScene" uid="uid://copnm48becyig" path="res://main_bablue.tscn" id="5_6lny1"]
+[ext_resource type="PackedScene" path="res://main_bablue.tscn" id="5_6lny1"]
 [ext_resource type="Script" path="res://main_bablue.gd" id="6_ek7el"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3f5yi"]
