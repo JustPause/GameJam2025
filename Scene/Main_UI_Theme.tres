@@ -1,0 +1,27 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bld64og4icfc6"]
+
+[ext_resource type="FontFile" uid="uid://dvn1dba2xgirj" path="res://Scene/Comic Kids.ttf" id="1_uyx7k"]
+
+[sub_resource type="SystemFont" id="SystemFont_cgs0e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7rpf"]
+bg_color = Color(0.47451, 0.47451, 0.47451, 1)
+border_width_left = 1
+border_width_top = 2
+border_color = Color(0.593134, 0.593134, 0.593133, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2i7s"]
+bg_color = Color(0.473976, 0.473976, 0.473976, 1)
+
+[resource]
+default_font = ExtResource("1_uyx7k")
+default_font_size = 24
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/constants/outline_size = 7
+Button/font_sizes/font_size = 18
+Button/fonts/font = SubResource("SystemFont_cgs0e")
+Button/styles/normal = SubResource("StyleBoxFlat_o7rpf")
+Label/constants/outline_size = 7
+Panel/styles/panel = SubResource("StyleBoxFlat_t2i7s")
