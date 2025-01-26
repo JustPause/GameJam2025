@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cncqiisbtgevy"]
+[gd_scene load_steps=3 format=3 uid="uid://dn6vnolqprgtd"]
 
-[ext_resource type="Theme" uid="uid://bld64og4icfc6" path="res://Scene/Main_UI_Theme.tres" id="1_kngsl"]
+[ext_resource type="Script" path="res://Scene/main_menu.gd" id="1_kerhm"]
+[ext_resource type="Theme" uid="uid://doj56ai31tnfa" path="res://Scene/Main_UI_Theme.tres" id="1_kngsl"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -15,8 +16,10 @@ offset_right = 297.0
 offset_bottom = 184.5
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kerhm")
 
 [node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 152.0
 offset_top = 119.5
 offset_right = 351.0
@@ -25,6 +28,7 @@ scale = Vector2(1.45262, 0.795984)
 theme = ExtResource("1_kngsl")
 
 [node name="Button" type="Button" parent="Panel2"]
+layout_mode = 0
 offset_right = 199.0
 offset_bottom = 75.0
 text = "
@@ -47,6 +51,7 @@ scale = Vector2(0.717954, 1.02491)
 text = "Play"
 
 [node name="Panel3" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 152.0
 offset_top = 206.5
 offset_right = 351.0
@@ -55,6 +60,7 @@ scale = Vector2(0.612617, 0.635983)
 theme = ExtResource("1_kngsl")
 
 [node name="Button" type="Button" parent="Panel3"]
+layout_mode = 0
 offset_right = 199.0
 offset_bottom = 75.0
 text = "
@@ -77,6 +83,7 @@ scale = Vector2(1.29054, 1.21359)
 text = "Options"
 
 [node name="Panel4" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 319.0
 offset_top = 206.5
 offset_right = 518.0
@@ -85,6 +92,7 @@ scale = Vector2(0.612617, 0.635983)
 theme = ExtResource("1_kngsl")
 
 [node name="Button" type="Button" parent="Panel4"]
+layout_mode = 0
 offset_right = 199.0
 offset_bottom = 75.0
 text = "
@@ -105,3 +113,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.29054, 1.21359)
 text = "Quit"
+
+[connection signal="pressed" from="Panel2/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel3/Button" to="." method="_on_button_pressed_op"]
+[connection signal="pressed" from="Panel4/Button" to="." method="_on_button_pressed_quit"]

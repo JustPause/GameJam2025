@@ -9,9 +9,9 @@ var g
 func _ready() -> void:
 	node = get_parent().get_parent()
 	l=node.find_child("MainBablue")
-	g=node.find_child("Building")
+	g=node.find_child("Buildings")
 	
-	print(Lable_1," ",Lable_2)
+	print(l.," ",g.points)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

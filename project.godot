@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="BubbleTruble"
-run/main_scene="res://Scene/Green Lands.tscn"
+run/main_scene="res://Scene/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
