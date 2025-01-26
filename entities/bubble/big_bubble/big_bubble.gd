@@ -34,9 +34,8 @@ func kill() -> void:
 		audio_player.finished.connect(audio_player.queue_free)
 		call_deferred("queue_free")
 
-func hit_on_caselle() -> void:
-	find_parent("Node2D").find_child("MainBablue").hit()
-	print("hit")
+func hit_on_caselle(i) -> void:
+	find_parent("Node2D").find_child("MainBablue").hit(i)
 
 func update(i) -> void:
 	
@@ -56,9 +55,6 @@ func _ready() -> void:
 	
 	update(1)
 	
-	print(current_health)
-
-	
 	if not get_parent() is Path2D:
 		kill()
 
@@ -68,7 +64,7 @@ func _process(delta: float) -> void:
 	progress += speed * delta
 
 	if progress_ratio == 1:
-		hit_on_caselle()
+		hit_on_caselle(base_attack_damage)
 		kill()
 
 func damage(ammount : float, attack_type : GlobalEnums.TowerAttackTypes) -> void:

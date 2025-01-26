@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dn6vnolqprgtd"]
+[gd_scene load_steps=5 format=3 uid="uid://dn6vnolqprgtd"]
 
 [ext_resource type="Script" path="res://Scene/main_menu.gd" id="1_kerhm"]
 [ext_resource type="Theme" uid="uid://doj56ai31tnfa" path="res://Scene/Main_UI_Theme.tres" id="1_kngsl"]
 [ext_resource type="AudioStream" uid="uid://fi2po3t7ng76" path="res://entities/bubble/big_bubble/menu loop.mp3" id="3_qyyu4"]
+[ext_resource type="Texture2D" uid="uid://bw57u1rb5nxny" path="res://Assets/cover1.png" id="4_oqcqt"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -18,6 +19,22 @@ offset_bottom = 184.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kerhm")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.651074
+anchor_top = -6.41821
+anchor_right = 1.8736
+anchor_bottom = -1.04305
+offset_left = -316.262
+offset_top = 1016.82
+offset_right = 104.084
+offset_bottom = 113.384
+scale = Vector2(0.88, 0.88)
+pivot_offset = Vector2(960, 540)
+texture = ExtResource("4_oqcqt")
+metadata/_edit_use_anchors_ = true
 
 [node name="Panel2" type="Panel" parent="."]
 layout_mode = 0

@@ -33,7 +33,7 @@ func _input(event: InputEvent) -> void:
 			place_tile_at_location(tile)
 			points=points-turret_t.pay()
 			add_turret(turret_t, tile)
-			
+
 func place_tile_at_location(tile: Vector2i):
 	var buildings: TileMapLayer = map_node.find_child("Buldings")
 	

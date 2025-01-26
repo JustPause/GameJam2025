@@ -69,6 +69,7 @@ tile_map_data = PackedByteArray("AAAQAAgAAAAAAAAAAAARAAgAAAAAAAAAAAARAAkAAAAAAAA
 tile_set = SubResource("TileSet_ierxv")
 
 [node name="Buldings" type="TileMapLayer" parent="Map"]
+visible = false
 tile_set = SubResource("TileSet_ierxv")
 
 [node name="Buildings" type="Node2D" parent="."]

@@ -13,8 +13,8 @@ func _process(delta: float) -> void:
 func hp():
 	return (self.scale.x+self.scale.y/2) / (Vector2(0.1,0.1).x+Vector2(0.1,0.1).y/2)
 
-func hit():
-	self.scale=Vector2(self.scale.x+ 0.01,self.scale.y+ 0.01)
+func hit(i):
+	self.scale=Vector2(self.scale.x+ i/100,self.scale.y+i/100)
 	
 	print(self.scale)
 	if self.scale >= Vector2(0.1,0.1):

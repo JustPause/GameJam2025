@@ -22,5 +22,5 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	Lable_1.text=str("HP",  round(l.hp()*10))
-	Lable_2.text=str("Points ",g.points)
-	Lable_3.text=str("Timer ")
+	Lable_2.text=str("Points ", g.points)
+	Lable_3.text=str("Timer ", )

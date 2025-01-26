@@ -75,7 +75,6 @@ func _ready() -> void:
 
 func spawn_enemy(units) -> void:
 	
-	print(units)
 	var enemy
 	if(units=="Basic_Bubble"):
 		enemy=basic_bubble_scene.instantiate()
@@ -122,8 +121,11 @@ func start_next_wave() -> void:
 		count = 0 # Reset enemy spawn count
 		spawn_enemies = true # Allow enemy spawning
 		countdown_is_active = false
+
 	else:
 		print("All waves completed!")
+		get_tree().change_scene_to_file("res://Scene/Finish.tscn")
+
 		spawn_enemies = false
 
 func on_wave_timer_timeout() -> void:
