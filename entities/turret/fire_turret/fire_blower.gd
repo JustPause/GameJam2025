@@ -13,6 +13,7 @@ extends Node2D
 @onready var enemy_detector : Area2D = $EnemyDetector
 @onready var flame : AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer : Timer = $Timer
+@onready var flame_audio : AudioStreamPlayer = $AudioStreamPlayer
 
 var enemies_in_range : Array[HitBox]
 
@@ -66,14 +67,14 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if not current_target_enemy:
+	if not current_target_enemy and not can_shoot:
+		flame_audio.playing = false
 		return
 	
+	if not flame_audio.playing:
+		flame_audio.play()
+
 	look_at(current_target_enemy.global_position)
-
-	if not can_shoot:
-		return
-
 	flame.visible = true
 	current_target_enemy.emit_signal("damage", damage_rate * _delta, GlobalEnums.TowerAttackTypes.FIRE)
 	
