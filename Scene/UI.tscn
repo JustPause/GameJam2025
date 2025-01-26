@@ -46,11 +46,12 @@ size_flags_vertical = 0
 [node name="Turrets (Air)" type="ItemList" parent="HBoxContainer/MarginContainer2/PanelContainer"]
 layout_direction = 2
 layout_mode = 2
+allow_reselect = true
 allow_search = false
 auto_height = true
 text_overrun_behavior = 4
 item_count = 1
-max_columns = 4
+max_columns = 3
 fixed_icon_size = Vector2i(48, 48)
 item_0/icon = ExtResource("1_up7yp")
 
@@ -69,17 +70,14 @@ layout_direction = 3
 layout_mode = 2
 size_flags_vertical = 8
 size_flags_stretch_ratio = 0.0
+allow_reselect = true
 allow_search = false
 auto_height = true
 item_count = 2
 max_columns = 4
 fixed_icon_size = Vector2i(48, 48)
 item_0/icon = ExtResource("2_oheqh")
-item_0/selectable = false
-item_0/disabled = true
 item_1/icon = ExtResource("3_yxrwp")
-item_1/selectable = false
-item_1/disabled = true
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
