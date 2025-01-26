@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://i584myvhuq56"]
+[gd_scene load_steps=14 format=3 uid="uid://i584myvhuq56"]
 
 [ext_resource type="Script" path="res://entities/turret/fire_turret/fire_blower.gd" id="1_3b0ub"]
 [ext_resource type="Texture2D" uid="uid://c33r70jus7jlc" path="res://entities/turret/fire_turret/fire_turret.png" id="1_c3wem"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://d17upvkx0so50" path="res://entities/turret/fire_turret/flames/fire_frame06.png" id="8_i345h"]
 [ext_resource type="Texture2D" uid="uid://tkth3bivn4ix" path="res://entities/turret/fire_turret/flames/fire_frame07.png" id="9_g4jx6"]
 [ext_resource type="Texture2D" uid="uid://ckgiq3r6vqsg4" path="res://entities/turret/fire_turret/flames/fire_frame08.png" id="10_24j1m"]
+[ext_resource type="AudioStream" uid="uid://dbyclookj2x8g" path="res://entities/turret/fire_turret/flamethrower.mp3" id="12_461b1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6qjsd"]
 animations = [{
@@ -82,3 +83,11 @@ rotation = 1.5708
 scale = Vector2(0.05, 0.1)
 sprite_frames = SubResource("SpriteFrames_6qjsd")
 frame_progress = 0.0547421
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_461b1")
+volume_db = -20.0
+parameters/looping = true

@@ -12,15 +12,13 @@ extends Node2D
 
 @onready var enemy_detector : Area2D = $EnemyDetector
 @onready var flame : AnimatedSprite2D = $AnimatedSprite2D
-
+@onready var timer : Timer = $Timer
+@onready var flame_audio : AudioStreamPlayer = $AudioStreamPlayer
 
 var enemies_in_range : Array[HitBox]
 
 var current_target_enemy : HitBox = null
 var can_shoot : bool = false
-
-func shoot_timer() -> void:
-	get_tree().create_timer(attack_wait_time).timeout.connect(func() -> void: if current_target_enemy: can_shoot = true)
 
 func add_area(area : Area2D) -> void:
 	if area is HitBox:
@@ -28,7 +26,7 @@ func add_area(area : Area2D) -> void:
 
 		if current_target_enemy == null:
 			current_target_enemy = area
-			shoot_timer()
+			timer.start()
 		
 		#lambda func becaus weird error was occuring when binded to remove area
 		area.tree_exiting.connect(remove_area.bind(area))
@@ -50,7 +48,7 @@ func remove_area(area : Area2D) -> void:
 				current_target_enemy = enemy
 
 		if current_target_enemy:
-			shoot_timer()
+			timer.start()
 
 func _ready() -> void:
 	var collision_shape := CollisionShape2D.new()
@@ -59,6 +57,9 @@ func _ready() -> void:
 	collision_shape.shape = shape
 	enemy_detector.add_child(collision_shape)
 
+	timer.wait_time = attack_wait_time
+	timer.timeout.connect(func() -> void: if current_target_enemy: can_shoot = true)
+
 	flame.visible = false
 
 	enemy_detector.area_entered.connect(add_area)
@@ -66,14 +67,14 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if not current_target_enemy:
+	if not current_target_enemy and not can_shoot:
+		flame_audio.playing = false
 		return
 	
+	if not flame_audio.playing:
+		flame_audio.play()
+
 	look_at(current_target_enemy.global_position)
-
-	if not can_shoot:
-		return
-
 	flame.visible = true
 	current_target_enemy.emit_signal("damage", damage_rate * _delta, GlobalEnums.TowerAttackTypes.FIRE)
 	
