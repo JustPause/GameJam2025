@@ -32,11 +32,19 @@ func add_turret(turret_name, grid_position: Vector2):
 	add_child(turret_name)
 
 func _input(event: InputEvent) -> void:
-	print(turret_index)
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		var tile = map_node.get_clicked_tile()
 	
 		var turret_t=turret[0].instantiate()
+		if typeof(tile) == TYPE_VECTOR2I and points>=turret_t.price and tile is Vector2i:
+
+			place_tile_at_location(tile)
+			points=points-turret_t.pay()
+			add_turret(turret_t, tile)
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		var tile = map_node.get_clicked_tile()
+	
+		var turret_t=turret[1].instantiate()
 		if typeof(tile) == TYPE_VECTOR2I and points>=turret_t.price and tile is Vector2i:
 
 			place_tile_at_location(tile)

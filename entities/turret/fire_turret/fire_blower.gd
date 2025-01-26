@@ -2,7 +2,7 @@ extends Node2D
 
 @export var radius : float = 50
 
-@export var damage_rate : float = 1
+@export var damage_rate : float = 10
 @export var attack_wait_time : float = 0.25
 
 @export var draw_circle_outline : bool = true :

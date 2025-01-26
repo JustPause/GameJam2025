@@ -1,22 +1,16 @@
 extends Node2D
+var hp_:float
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	hp_ = 100
 
 func hp():
 	return (self.scale.x+self.scale.y/2) / (Vector2(0.1,0.1).x+Vector2(0.1,0.1).y/2)
 
 func hit(i):
-	self.scale=Vector2(self.scale.x+ i/100,self.scale.y+i/100)
+	hp_-=i*10
+	scale = Vector2.ZERO.lerp(Vector2(.1,.1), (100-hp_)/hp_)
 	
-	print(self.scale)
-	if self.scale >= Vector2(0.1,0.1):
-		print("Boom")
+	print(hp_)
+	if hp_<=0:
 		get_tree().change_scene_to_file("res://Scene/GameOver.tscn")
