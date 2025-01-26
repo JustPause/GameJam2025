@@ -18,9 +18,7 @@ func snap_to_grid():
 
 func add_turret(turret_name, grid_position: Vector2):
 	var turret = turret_name.instantiate()
-
 	turret.position = grid_position * GRID_SIZE+ Vector2(8,8)
-
 	add_child(turret)
 
 func _input(event: InputEvent) -> void:
@@ -29,5 +27,3 @@ func _input(event: InputEvent) -> void:
 		
 		if typeof(tile) == TYPE_VECTOR2I:
 			add_turret(turret[0], tile)
-			print(tile)
-			print(Vector2(tile) * GRID_SIZE)

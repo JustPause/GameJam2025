@@ -34,6 +34,7 @@ func kill() -> void:
 		call_deferred("queue_free")
 
 func hit_on_caselle() -> void:
+	find_parent("Node2D").find_child("MainBablue").hit()
 	print("hit")
 
 func _ready() -> void:
