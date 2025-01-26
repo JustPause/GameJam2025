@@ -3,6 +3,7 @@ extends Node2D
 @export var radius : float = 75
 @export var damage : float = 1
 @export var attack_speed : float = 0.4
+var price =100
 
 @export var draw_circle_outline : bool = true:
 	set(value):
@@ -16,6 +17,9 @@ extends Node2D
 var enemies_in_range : Array[HitBox]
 var can_shoot : bool = true
 var current_target_enemy : HitBox = null
+
+func pay():
+	return price
 
 func add_area(area : Area2D) -> void:
 	if area is HitBox:
