@@ -82,3 +82,6 @@ rotation = 1.5708
 scale = Vector2(0.05, 0.1)
 sprite_frames = SubResource("SpriteFrames_6qjsd")
 frame_progress = 0.0547421
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
