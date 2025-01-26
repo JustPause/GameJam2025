@@ -19,7 +19,7 @@ func _ready() -> void:
 	
 	Lable_1=find_child("Label")
 	Lable_2=find_child("Label2")
-	Lable_3=find_child("Label3")
+
 
 	fire_turret.item_selected.connect(GlobalEnums.emit_active_itime.bind())
 	bubble_turrets.item_selected.connect(bubble_turret.bind())
@@ -30,6 +30,5 @@ func bubble_turret(item :  int):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	Lable_1.text=str("HP",  round(l.hp()*10))
+	Lable_1.text=str("HP ",  round(l.hp()*10))
 	Lable_2.text=str("Points ", g.points)
-	Lable_3.text=str("Timer ", )

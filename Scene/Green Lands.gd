@@ -4,7 +4,6 @@ var map_node : Node2D
 const GRID_SIZE = Vector2(16, 16)
 var turret=[]
 var turret_index = -1
-var turret_index = -1
 var points = 200
 
 func _ready() -> void:

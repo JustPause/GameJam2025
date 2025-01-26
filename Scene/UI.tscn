@@ -92,11 +92,3 @@ offset_top = -56.0
 offset_right = 96.0
 offset_bottom = -33.0
 text = "Points:"
-
-[node name="Label3" type="Label" parent="."]
-layout_mode = 0
-offset_left = -48.0
-offset_top = -32.0
-offset_right = 48.0
-offset_bottom = -9.0
-text = "Points:"

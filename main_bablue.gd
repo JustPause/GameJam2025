@@ -5,7 +5,7 @@ func _ready() -> void:
 	hp_ = 100
 
 func hp():
-	return (self.scale.x+self.scale.y/2) / (Vector2(0.1,0.1).x+Vector2(0.1,0.1).y/2)
+	return hp_/10
 
 func hit(i):
 	hp_-=i*10
