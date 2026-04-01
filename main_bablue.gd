@@ -13,4 +13,4 @@ func hit(i):
 	
 	print(hp_)
 	if hp_<=0:
-		get_tree().change_scene_to_file("res://Scene/GameOver.tscn")
+		get_tree().change_scene_to_file("res://Assets/GameOver.tscn")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://vg7ige6kku6i"]
+[gd_scene load_steps=16 format=4 uid="uid://vg7ige6kku6i"]
 
 [ext_resource type="Script" path="res://Code/Map.gd" id="1_putcg"]
 [ext_resource type="Texture2D" uid="uid://dv7bp8snjam25" path="res://Assets/Water.png" id="1_tpi1q"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://main_bablue.gd" id="6_ek7el"]
 [ext_resource type="Script" path="res://Scene/ui.gd" id="9_d51oo"]
 [ext_resource type="AudioStream" uid="uid://d3uhjjhpdlyr4" path="res://entities/bubble/big_bubble/sountrack main loop.mp3" id="10_peih6"]
+[ext_resource type="Texture2D" uid="uid://kdch41aya6r3" path="res://Scene/castle_sprite.png" id="11_b7bao"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3f5yi"]
 texture = ExtResource("1_tpi1q")
@@ -97,3 +98,8 @@ metadata/_edit_use_anchors_ = true
 scale = Vector2(3, 3)
 stream = ExtResource("10_peih6")
 autoplay = true
+
+[node name="CastleSprite" type="Sprite2D" parent="."]
+position = Vector2(888, 360)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("11_b7bao")

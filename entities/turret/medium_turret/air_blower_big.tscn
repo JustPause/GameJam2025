@@ -9,7 +9,7 @@
 script = ExtResource("1_uoclh")
 radius = 50.0
 damage = 15.0
-attack_speed = 1.0
+attack_speed = 0.75
 
 [node name="EnemyDetector" type="Area2D" parent="."]
 collision_layer = 0

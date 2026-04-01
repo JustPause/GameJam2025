@@ -9,7 +9,7 @@ func _ready() -> void:
 	time=0
 
 func _process(delta: float) -> void:
-	if(time>60  and node.position.y<-470):
+	if(true and node.position.y<-470):
 		i+=0.01
 		node.rotation =  sin(i)*0.1
 		time+=delta
